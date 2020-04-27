@@ -20,6 +20,7 @@ from allauth.account import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('main.urls')),
     url(r'^accounts/', include('allauth.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name="account_login"),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name="account_logout"),

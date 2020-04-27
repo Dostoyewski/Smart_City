@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+      <div class="card #fafafa">
+		<div class="card-content #212121">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+			<b>Электронная почта:</b> {{ email }} <br>
+		</div>
+		<div class="card-action">
+		</div>
+	  </div>
+{% endblock content %}
