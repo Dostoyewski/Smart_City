@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<form action='/accounts/profile/' method="post">
+{% csrf_token %}
+	<div class="field-title">
+	{{ form.as_p }}
+	<button class="btn waves-effect waves-light  purple darken-4" type="submit" >OK</button><br>
+	'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных» 
+	</div>
+    
+</form>
+{% endblock content %}

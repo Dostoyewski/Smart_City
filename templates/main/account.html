@@ -3,6 +3,12 @@
 		<div class="card-content #212121">
         <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
 			<b>Электронная почта:</b> {{ email }} <br>
+			{{name}} <br>
+			{{vorname}} <br>
+			{{position}} <br>
+			{% if not isFull %}
+			<a href="/accounts/changeform">Обновить данные</a>
+			{% endif %}
 		</div>
 		<div class="card-action">
 		</div>
