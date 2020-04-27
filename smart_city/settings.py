@@ -25,8 +25,27 @@ SECRET_KEY = '(7o=r7ij92do@da1p6*8xq#p-*&m+lx*hw0kc0hc$q^hrs4%)a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+SITE_ID = 1
 
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+
+# allauth params:
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+# mailing params:
+ACCOUNT_ACTIVATION_DAYS = 2
+AUTH_USER_EMAIL_UNIQUE = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'nik.tesla637@gmail.com'
+EMAIL_HOST_PASSWORD = 'Tesla123!'
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -37,6 +56,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.vk',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -70,6 +100,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Smart_City.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': ''
+        }
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
