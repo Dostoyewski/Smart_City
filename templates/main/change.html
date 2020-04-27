@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<form action='/accounts/profile/' method="post">
+<form action='/accounts/changeform/' method="post">
 {% csrf_token %}
 	<div class="field-title">
 	{{ form.as_p }}

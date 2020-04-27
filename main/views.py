@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile
 from .forms import ChangeForm
+import datetime as dt
 
 
 def profile(request):
@@ -11,14 +12,16 @@ def profile(request):
     :return: JSON render
     """
     obj = UserProfile.objects.get(user_id=request.user.pk)
+    age = dt.date.today().year - obj.age.year
     return render(request, 'main/account.html', {'email': obj.user.email, 'name': obj.name,
                                                   'vorname': obj.vorname, 'fname': obj.fathername,
-                                                  'gender': obj.gender, 'age': obj.age,
+                                                  'gender': obj.gender, 'age': age,
                                                   'position': obj.position, 'exp': obj.exp,
                                                  'isFull': obj.isFull})
 
 
 def update_profile(request):
+    print(request)
     if request.method == 'POST':
         obj = UserProfile.objects.get(user_id=request.user.pk)
         form = ChangeForm(request.POST, request.FILES, initial={
@@ -37,8 +40,10 @@ def update_profile(request):
             obj.exp = form.cleaned_data['exp']
             obj.isFull = True
             obj.save()
-            return HttpResponseRedirect('accounts/profile/')
+            print('saved')
+            return HttpResponseRedirect('/accounts/profile/')
     else:
+        print('render')
         obj = UserProfile.objects.get(user_id=request.user.pk)
         form = ChangeForm(request.POST, request.FILES, initial={
             'name': obj.name, 'vorname': obj.vorname,

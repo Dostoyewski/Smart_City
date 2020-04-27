@@ -3,9 +3,18 @@
 		<div class="card-content #212121">
         <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
 			<b>Электронная почта:</b> {{ email }} <br>
-			{{name}} <br>
-			{{vorname}} <br>
-			{{position}} <br>
+			<b>Имя:</b> {{name}} <br>
+			<b>Фамилия:</b> {{vorname}} <br>
+			<b>Отчество:</b> {{fname}} <br>
+			<b>Должность:</b> {{position}} <br>
+			<b>Возраст:</b> {{age}} <br>
+			<b>Пол: </b>
+			{% if gender == 0 %}
+			Мужской <br>
+			{% else %}
+			Женский <br>
+			{% endif %}
+			<b>Стаж:</b> {{exp}} <br>
 			{% if not isFull %}
 			<a href="/accounts/changeform">Обновить данные</a>
 			{% endif %}

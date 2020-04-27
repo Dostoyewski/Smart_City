@@ -1,0 +1,181 @@
+body {
+  background:#4E617E;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main-signin {
+  box-shadow: 0px 10px 20px #000;
+  width: 455px;
+  height: 360px;
+  margin: 120px auto;
+}
+.main-signin .main-signin__head {
+  background: #242328;
+  border-bottom: 1px solid #2d2f32;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0px 1px 0px #000;
+  padding: 12px 0;
+}
+.main-signin .main-signin__head p {
+  color: #586069;
+  text-align: center;
+}
+.main-signin .main-signin__middle {
+  background: #1f1e23;
+  border-bottom: 1px solid #2d2f32;
+  border-top: 1px solid #2d2f32;
+  box-shadow: 0px 1px 0px #000;
+}
+.main-signin .main-signin__middle .middle__form {
+  margin: 40px 0 20px 0;
+}
+.main-signin .main-signin__middle .middle__form ::-webkit-input-placeholder {
+  color: #25262a;
+}
+.main-signin .main-signin__middle .middle__form :-moz-placeholder {
+  color: #25262a;
+}
+.main-signin .main-signin__middle .middle__form ::-moz-placeholder {
+  color: #25262a;
+}
+.main-signin .main-signin__middle .middle__form :-ms-input-placeholder {
+  color: #25262a;
+}
+.main-signin .main-signin__middle .middle__form input[type="text"], .main-signin .main-signin__middle .middle__form input[type="password"], .main-signin .main-signin__middle .middle__form input[type="submit"] {
+  background: #daf4fe;
+  border-radius: 5px 5px 0 0;
+  border: none;
+  color: #25262a;
+  display: block;
+  margin: 0 20px;
+  outline: none;
+  padding: 15px 0;
+  width: 90%;
+}
+
+.main-signin .main-signin__middle .middle__form input[type="text"], .main-signin .main-signin__middle .middle__form input[type="password"] {
+  padding:15px 20px;
+  width:81%;
+  background: #FFFFFF;
+}
+
+.main-signin .main-signin__middle .middle__form input[type="password"] {
+  border-top: 1px solid #acabab;
+  border-radius: 0 0 5px 5px;
+  background: #FFFFFF;
+}
+.main-signin .main-signin__middle .middle__form input[type="submit"] {
+  background: #00aeef;
+  border-radius: 5px;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #80d6f7;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 15px;
+  cursor:pointer;
+  text-transform: uppercase;
+}
+.main-signin .main-signin__middle .middle__form input[type="submit"]:active {
+  background: #80d6f7;
+}
+.main-signin .main-signin__foot {
+  background: #242328;
+  border-top: 1px solid #2d2f32;
+  border-radius: 0 0 10px 10px;
+  float: left;
+  padding: 12px 0;
+  width: 100%;
+}
+.main-signin .main-signin__foot .foot__left {
+  float: left;
+  padding: 0 0 0 6%;
+  width: 56%;
+}
+.main-signin .main-signin__foot .foot__left p {
+  color: #586069;
+  margin: 0;
+  padding: 16px 0 0 0;
+  text-transform: uppercase;
+}
+.main-signin .main-signin__foot .foot__right {
+  float: left;
+  width: 38%;
+}
+.main-signin .main-signin__foot .foot__right .twit,
+.main-signin .main-signin__foot .foot__right .face {
+  float: left;
+}
+.main-signin .main-signin__foot .foot__right .twit a,
+.main-signin .main-signin__foot .foot__right .face a {
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  display: block;
+  margin: -12px 0;
+  text-indent: -999em;
+  width: 85px;
+  height: 77px;
+}
+.main-signin .main-signin__foot .foot__right .twit a:hover,
+.main-signin .main-signin__foot .foot__right .face a:hover {
+  background-color: #2d2f32;
+}
+.main-signin .main-signin__foot .foot__right .twit a {
+  background: url(../images/twitter.png) no-repeat center;
+}
+.main-signin .main-signin__foot .foot__right .face a {
+  background: url(../images/facebook.png) no-repeat center;
+  border-radius: 0 0 10px 0;
+}
+
+/* ����� ���� vladmaxi, ����� ������� */
+.vladmaxi-top{
+	line-height: 24px;
+	font-size: 11px;
+	background: rgba(0, 0, 0, 0.08);
+	text-transform: uppercase;
+	z-index: 9999;
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	font-family: calibri;
+	font-size: 13px;
+	box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
+	-webkit-animation: slideOut 0.5s ease-in-out 0.3s backwards;
+}
+@-webkit-keyframes slideOut{
+	0%{top:-30px; opacity: 0;}
+	100%{top:0px; opacity: 1;}
+}
+
+.vladmaxi-top a{
+	padding: 0px 10px;
+	letter-spacing: 1px;
+	color: #333;
+	text-shadow: 0px 1px 1px #fff;
+	display: block;
+	float: left;
+	text-decoration:none;
+}
+.vladmaxi-top a:hover{
+	background: #fff;
+}
+.vladmaxi-top span.right{
+	float: right;
+}
+.vladmaxi-top span.right a{
+	float: left;
+	display: block;
+}
+
+.button .secondaryAction{
+  margin: 0 0 0 10px;
+}
+
+.primaryAction{
+  border-radius: 5px 5px 5px 5px;
+  position: relative;
+  left: 50%;
+}

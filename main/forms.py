@@ -14,6 +14,6 @@ class ChangeForm(forms.Form):
     vorname = forms.CharField(max_length=50, label='Фамилия')
     fathername = forms.CharField(max_length=50, label='Отчество')
     gender = forms.ChoiceField(choices=GENDER, label='Пол')
-    age = forms.IntegerField(label='Возраст')
+    age = forms.DateField(label='Возраст')
     position = forms.CharField(max_length=50, label='Должность')
     exp = forms.IntegerField(label='Стаж')
