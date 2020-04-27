@@ -41,7 +41,7 @@ body {
 .main-signin .main-signin__middle .middle__form :-ms-input-placeholder {
   color: #25262a;
 }
-.main-signin .main-signin__middle .middle__form input[type="text"], .main-signin .main-signin__middle .middle__form input[type="password"], .main-signin .main-signin__middle .middle__form input[type="submit"] {
+.main-signin .main-signin__middle .middle__form input[type="text"], .main-signin .main-signin__middle .middle__form input[type="email"], .main-signin .main-signin__middle .middle__form input[type="password"], .main-signin .main-signin__middle .middle__form input[type="submit"] .middle__form input[type="email"] {
   background: #daf4fe;
   border-radius: 5px 5px 0 0;
   border: none;

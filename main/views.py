@@ -2,11 +2,19 @@ from django.shortcuts import render
 from webpush import send_user_notification
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile
+from django.contrib.auth.models import User
 from .forms import ChangeForm
 import datetime as dt
 
 
-def send_push(head,body,who):
+def send_push(head, body, who):
+    """
+    This function will send push notification to user
+    :param head: HEAD of notification
+    :param body: BODY of notification
+    :param who: User object
+    :return:
+    """
     payload = {"head": head, "body": body}
     send_user_notification(user=who, payload=payload, ttl=1000)
 
@@ -27,6 +35,11 @@ def profile(request):
 
 
 def update_profile(request):
+    """
+    This function creates form for updating user data
+    :param request: request
+    :return: render
+    """
     print(request)
     if request.method == 'POST':
         obj = UserProfile.objects.get(user_id=request.user.pk)
@@ -58,4 +71,3 @@ def update_profile(request):
             'exp': obj.exp
         })
     return render(request, 'main/change.html', {'form': form})
-  
