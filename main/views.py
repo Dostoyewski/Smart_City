@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from webpush import send_user_notification
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import UserProfile
 from .forms import ChangeForm
 import datetime as dt
+
+
+def send_push(head,body,who):
+    payload = {"head": head, "body": body}
+    send_user_notification(user=who, payload=payload, ttl=1000)
 
 
 def profile(request):
@@ -52,3 +58,4 @@ def update_profile(request):
             'exp': obj.exp
         })
     return render(request, 'main/change.html', {'form': form})
+  

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from allauth.account import views as auth_views
+from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,4 +45,6 @@ urlpatterns = [
     path('accounts/password/reset/key/done/',
          auth_views.PasswordResetFromKeyDoneView.as_view(template_name='account/password_reset_from_key_done.html'),
          name="account_reset_password_from_key_done"),
+     url(r'^webpush/', include('webpush.urls')),
+     path('', views.index),
 ]

@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'main',
-
+    'webpush',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -145,7 +145,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEg1L1mT0LVhczdKdWAmcTdFbbc03zBC6nhknzfc1sonG0P3HpqRWxGEX1MzJ08hGag1wd4LPc6lT2DKX1iKvSmQ==",
+    "VAPID_PRIVATE_KEY":"MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgf0kEAIQax6LGOiPqmrVeA+6Ftp+IT5a/TzG2ZowIVcyhRANCAASDUvWZPQtWFzN0p1YCZxN0VttzTfMELqeGSfN9zWyicbQ/cempFbEYRfUzMnTyEZqDXB3gs9zqVPYMpfWIq9KZ",
+    "VAPID_ADMIN_EMAIL": "gcherepennicov@gmail.com"
+}
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
