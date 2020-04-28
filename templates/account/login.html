@@ -51,24 +51,29 @@
   <body>
     <div class="screen-height-filler valign-wrapper">
       <div class="container row center">
-        <div class="col m8 offset-m2 white popup">
+        <div class="col m8 offset-m2 s12 white popup">
           <h2>Войти</h2>
 
           <div class="divider"></div>
 
           <div class="section">
-            <form id="info_form" action="{% url 'account_login' %}" method="POST">
+            <form action="{% url 'account_login' %}" method="POST">
               {% csrf_token %}
 
               <div class="input-field">
-                <input type="text" id="username" name="username" tabindex="1" value="{{ username }}" required>
-                <label for="username">Имя пользователя</label>
+                <input type="text" id="id_login" name="login" tabindex="1" required>
+                <label for="login">Имя пользователя</label>
               </div>
 
               <div class="input-field">
-                <input type="text" id="email" name="email" tabindex="2" value="{{ email }}" required>
-                <label for="email">Пароль</label>
+                <input type="password" id="id_password" name="password" tabindex="2" required>
+                <label for="password">Пароль</label>
               </div>
+
+              <label>
+                <input type="checkbox" id="id_remember" name="remember" tabindex="10">
+                <span>Запомнить меня</span>
+              </label>
 
               <div class="flex-toolbar">
                 <a
