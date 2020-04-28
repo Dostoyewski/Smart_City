@@ -1,0 +1,31 @@
+/* fixing browser-related issues */
+
+:focus {
+    outline: none !important;
+}
+
+
+/* common initial settings */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* common reusable helpers */
+
+.popup {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #c8c8c8;
+}
+
+.screen-height-filler {
+    height: 100vh;
+}
+
+.flex-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
