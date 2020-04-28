@@ -41,7 +41,10 @@ body {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    column-gap: 1em;
+}
+
+.flex-right-toolbar > * {
+    margin-left: 1em;
 }
 
 /* forces the centering */
