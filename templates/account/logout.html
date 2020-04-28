@@ -1,21 +1,59 @@
-{% extends "account/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% load i18n %}
+  <title>Document</title>
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+  <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
-{% block content %}
-<h1>{% trans "Sign Out" %}</h1>
+  {% load i18n %}
+  {% block content %}
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+  
+  
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+</head>
+<body>
+  <body>
+    <div class="screen-height-filler valign-wrapper">
+      <div class="container row center">
+        <div class="col m8 offset-m2 s12 white popup">
+          <h2>ВЫЙТИ</h2>
+
+          <div class="divider"></div>
+
+          
+
+          <!--<div class="divider"></div>-->
+
+          <div class="section center">
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              
+              <div class="text_for_user">Вы уверены, что хотите выйти?</div>
+              
+              <div>
+                <button 
+                  class="btn-large waves-effect waves-light"
+                  type="submit">{% trans 'Sign Out' %}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  {% endblock %}
+</body>
+</html>
 
 
-{% endblock %}
+
+
+
