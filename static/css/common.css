@@ -100,6 +100,10 @@ body {
     line-height: 1.9em !important;
 }
 
-.hat-search input {
-    /* width: calc(100% - 5rem) !important; */
+
+/* TODO: move to a proper place */
+.text_for_user {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 1em;
 }
