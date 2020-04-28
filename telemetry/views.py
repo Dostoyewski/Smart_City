@@ -81,8 +81,7 @@ def data_all(request):
             params.append(z)
         all_data.append({'device': device.idDevice,
                          'data': params})
-    send_to_user('TELEMETRY', 'New data loaded to DB', request.user)
-    return render(request, 'telemetry/all.html', {'stats': all_data})
+    return render(request, 'telemetry/all.html', {'stats': json.dumps(all_data)})
 
 
 def data_critical(request):
@@ -109,7 +108,10 @@ def data_critical(request):
         if not params:
             all_data.append({'device': device.idDevice,
                              'data': params})
-    send_to_user('TELEMETRY', 'New data loaded to DB', request.user)
+    if not all_data:
+        send_to_user('TELEMETRY', 'Все системы в норме', request.user)
+    else:
+        send_to_user('TELEMETRY', 'Обнаружены критические повреждения', request.user)
     return render(request, 'telemetry/critical.html', {'stats': all_data})
 
 
@@ -137,7 +139,11 @@ def data_attention(request):
         if not params:
             all_data.append({'device': device.idDevice,
                              'data': params})
-    send_to_user('TELEMETRY', 'New data loaded to DB', request.user)
+    if not all_data:
+        send_to_user('TELEMETRY', 'Все системы в норме', request.user)
+    else:
+        send_to_user('TELEMETRY', 'Проверьте параметры устройств: некоторые приближаются к критическим',
+                     request.user)
     return render(request, 'telemetry/danger.html', {'stats': all_data})
 
 

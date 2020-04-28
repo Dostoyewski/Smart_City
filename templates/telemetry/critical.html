@@ -11,8 +11,10 @@
     {% endif %}
     <h1> Критическая телеметрия</h1>
     <a href="{% url 'telemetry_main' %}">Главная страница с телеметрией</a>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
     {{ stats }}
     <script src="{% static '/js/registerSw.js' %}"></script>
 </body>
