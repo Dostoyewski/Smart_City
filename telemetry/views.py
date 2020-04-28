@@ -1,14 +1,15 @@
 from django.shortcuts import render
-from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Device, StatData
-from django.http import JsonResponse
 import json
 import pandas as pd
 import numpy as np
 from django.conf import settings
 import datetime
 from main.views import send_to_user
+from os import listdir
+from os.path import isfile, join
 
 
 @csrf_exempt
@@ -48,6 +49,29 @@ def load_data(filename):
         return True
     except TypeError:
         return False
+
+
+def update_db(request):
+    """
+    This function will update current db
+    with devices and data
+    :param request: only POST is allowed, should contain header 'reload'
+    :return: 200 if OK else METHOD_NOT_ALLOWED
+    """
+    if request.method == 'POST':
+        body = request.body
+        request_data = json.loads(body)
+
+        if 'reload' not in request_data:
+            return JsonResponse(status=400, data={"message": "Invalid data format"})
+        path = settings.BASE_DIR + settings.STATIC_ROOT + "/datafiles/"
+        files = [f for f in listdir(path) if isfile(join(path, f))]
+        for file in files:
+            if file[-3:] == 'dat':
+                load_data(file)
+        return HttpResponse(200)
+    else:
+        return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
 
 
 def main_telemetry_page(request):
