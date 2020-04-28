@@ -24,11 +24,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('telemetry/', include('telemetry.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^webpush/', include('webpush.urls')),
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name="account_login"),
-    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name="account_logout"),
-    path('accounts/signup/', auth_views.SignupView.as_view(template_name='account/signup.html'), name="account_signup"),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'),
+         name="account_login"),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'),
+         name="account_logout"),
+    path('accounts/signup/', auth_views.SignupView.as_view(template_name='account/signup.html'),
+         name="account_signup"),
     path('accounts/password/change/', auth_views.PasswordChangeView.as_view(template_name=
                                                                             'account/password_change.html'),
          name="account_change_password"),
