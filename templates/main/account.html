@@ -1,25 +1,120 @@
-{% extends 'base.html' %} {% block content %}
-      <div class="card #fafafa">
-		<div class="card-content #212121">
-        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
-			<b>Электронная почта:</b> {{ email }} <br>
-			<b>Имя:</b> {{name}} <br>
-			<b>Фамилия:</b> {{vorname}} <br>
-			<b>Отчество:</b> {{fname}} <br>
-			<b>Должность:</b> {{position}} <br>
-			<b>Возраст:</b> {{age}} <br>
-			<b>Пол: </b>
-			{% if gender == 0 %}
-			Мужской <br>
-			{% else %}
-			Женский <br>
-			{% endif %}
-			<b>Стаж:</b> {{exp}} <br>
-			{% if not isFull %}
-			<a href="/accounts/changeform">Обновить данные</a>
-			{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Document</title>
+
+	<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+
+</head>
+<body>
+	<div class="hat white-text row">
+		<div class="col m3 s12 center">
+			<img src="{% static 'images/logo.png' %}" alt="" class="logo">
 		</div>
-		<div class="card-action">
+
+		<div class="col m4 offset-m1 s12 valign-wrapper">
+			<nav class="grey lighten-3 hat-search">
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field">
+							<input id="search" type="search" tabindex="1">
+							<label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+						</div>
+					</form>
+				</div>
+			</nav>
 		</div>
-	  </div>
-{% endblock content %}
+
+		<div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
+
+		<div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
+	</div>
+
+	<div class="col s12">
+		<div class="container">
+			<div class="section">
+				<div class="row user-profile mt-1 ml-0 mr-0">
+					<img class="respnsive-img" alt src="/static/images/1489233587_4d9a12b56345.jpg">
+					::after
+				</div>
+
+				<div class="row">
+					<div class="col s12 m4 l3 user-section-negative-margin">
+						<div class="row">
+							<div class="col s12 center-align">
+							  <img class="responsive-img circle z-depth-5" width="120" src="/static/images/1489233587_4d9a12b56345.jpg"
+								alt="">
+							  <br>
+							  <a class="waves-effect waves-light btn mt-5 border-radius-4"> Follow</a>
+							</div>
+						  </div>
+					</div>
+					<div class="col s12 m8 l6">
+
+						<div class="row">
+							<div class="card user-card-negative-margin z-depth-0" id="feed">
+							  <div class="card-content card-border-gray">
+								<div class="row">
+								  <div class="col s12">
+									<h5>Suzanne Martin</h5>
+									<p>Senior Designer <span class="amber-text"><span
+										  class="material-icons star-width vertical-align-middle">star_rate</span>
+										<span class="material-icons star-width vertical-align-middle">star_rate</span> <span
+										  class="material-icons star-width vertical-align-middle">star_rate</span>
+										<span class="material-icons star-width vertical-align-middle">star_rate</span> <span
+										  class="material-icons star-width vertical-align-middle">star_rate</span></span></p>
+								  </div>
+								</div>
+								<div class="row">
+								  <div class="col s12">
+									<ul class="tabs card-border-gray mt-4">
+									  <li class="tab col m3 s6 p-0"><a href="#test1">
+										  <i class="material-icons vertical-align-middle">crop_portrait</i> Info
+										</a></li>
+									  <li class="tab col m3 s6 p-0"><a class="active" href="#test2">
+										  <i class="material-icons vertical-align-middle">bookmark_border</i> Feed
+										</a></li>
+									  <li class="tab col m3 s6 p-0"><a href="#test3">
+										  <i class="material-icons vertical-align-middle">date_range</i> Agenda
+										</a></li>
+									  <li class="tab col m3 s6 p-0"><a href="#test4">
+										  <i class="material-icons vertical-align-middle">attach_file</i> Resume
+										</a></li>
+									</ul>
+								  </div>
+								</div>
+								
+								
+							  
+							</div>
+						  </div>
+
+
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	
+
+	
+	<script src="{% static 'js/materialize.min.js' %}"></script>
+	<script src="{% static '/js/registerSw.js' %}"></script>
+</body>
+</html>
+
+
