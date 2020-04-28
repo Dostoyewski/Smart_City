@@ -41,7 +41,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    column-gap: 1em;
+    column-gap: 50px;
 }
 
 /* forces the centering */
