@@ -61,13 +61,13 @@
               {% csrf_token %}
 
               <div class="input-field">
-                <input type="text" id="username" name="username" tabindex="1" value="{{ username }}" required>
-                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" name="username" tabindex="1" value="{{ user }}" required>
+                <label for="id_name">Имя пользователя</label>
               </div>
 
               <div class="input-field">
-                <input type="text" id="email" name="email" tabindex="2" value="{{ email }}" required>
-                <label for="email">Пароль</label>
+                <input type="password" id="id_password" name="id_password" tabindex="2" value="{{ password }}" required>
+                <label for="id_password">Пароль</label>
               </div>
 
               <div class="flex-toolbar">
@@ -78,9 +78,9 @@
                 </a>
 
                 <button
-                  class="btn-large waves-effect waves-light"
+                  class="primaryAction"
                   tabindex="4"
-                  type="submit">{% trans "Войти" %}
+                  type="submit">{% trans "Войти" %} &raquo;
                 </button>
               </div>
             </form>

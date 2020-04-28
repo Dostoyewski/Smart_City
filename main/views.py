@@ -71,6 +71,7 @@ def home(request):
     return render(request, 'main/home.html', {user: user, 'vapid_key': vapid_key})
 
 
+@login_required
 def profile(request):
     """
     This function creates User Profile site with info
@@ -90,6 +91,7 @@ def profile(request):
         return HttpResponseRedirect("/accounts/changeform/")
 
 
+@login_required
 def update_profile(request):
     """
     This function creates form for updating user data
