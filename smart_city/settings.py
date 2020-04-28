@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'main',
+    'telemetry',
     'webpush',
     'allauth',
     'allauth.account',
