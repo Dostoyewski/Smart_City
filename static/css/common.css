@@ -52,6 +52,14 @@ body {
     align-items: center;
 }
 
+/* forces the centering */
+.flex-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
 .board > .col {
     padding: 0 0.75rem 1.5rem 0.75rem !important;
 }

@@ -93,18 +93,37 @@
 
           <div class="divider"></div>
 
-          <div class="section left">
+          <div class="section flex-left">
             <a
               href="/accounts/signup"
               class="btn-flat waves-effect waves-dark"
               tabindex="5">Регистрация
             </a>
           </div>
+
+          <div class="hide" id="errorTab">
+            <div class="divider"></div>
+            <p class="flow-text red-text">This is some error</p>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+
+    <script>
+      let allErrors = '{{ form.errors.as_json }}'
+      let data = JSON.parse(render(allErrors))
+
+      let errorTab = document.getElementById('errorTab')
+      let errorMessage = errorTab.querySelector('p')
+
+      if (data['__all__'].length > 0) {
+        errorMessage.innerHTML = data['__all__'][0]['message']
+        errorTab.classList.remove('hide')
+      }
+    </script>
   </body>
 </html>
 
