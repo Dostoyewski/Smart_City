@@ -10,7 +10,6 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification, send_group_notification
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 import json
 
 
@@ -56,9 +55,15 @@ def send_to_user(head, body, user, icon="https://i.imgur.com/dRDxiCQ.png", url="
                "icon": icon, "url": url}
     send_user_notification(user=user, payload=payload, ttl=1000)
 
+
 @login_required
 @require_GET
 def home(request):
+    """
+    This funciton represents the main page
+    :param request:
+    :return:
+    """
     send_to_user('INFO', 'This is the main page', get_object_or_404(User, pk=request.user.pk))
     webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
@@ -83,7 +88,6 @@ def profile(request):
                                                      'isFull': obj.isFull})
     except:
         return HttpResponseRedirect("/accounts/changeform/")
-
 
 
 def update_profile(request):
