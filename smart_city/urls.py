@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from allauth.account import views as auth_views
-from main import views
+from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^webpush/', include('webpush.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name="account_login"),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name="account_logout"),
     path('accounts/signup/', auth_views.SignupView.as_view(template_name='account/signup.html'), name="account_signup"),
@@ -45,6 +48,5 @@ urlpatterns = [
     path('accounts/password/reset/key/done/',
          auth_views.PasswordResetFromKeyDoneView.as_view(template_name='account/password_reset_from_key_done.html'),
          name="account_reset_password_from_key_done"),
-     url(r'^webpush/', include('webpush.urls')),
-     path('', views.index),
-]
+    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript'))
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

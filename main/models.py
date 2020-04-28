@@ -93,7 +93,7 @@ def check_status(name):
     """
     if 'администратор' in name.lower():
         return 3
-    elif 'ведущий' in name.lower() or 'начальник' in name.lower():
+    elif 'ведущий' in name.lower() or 'начальник' in name.lower() or 'главный' in name.lower():
         return 1
     elif 'директор' in name.lower():
         return 2
