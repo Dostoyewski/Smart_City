@@ -29,3 +29,77 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.accurate-flex-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.flex-right-toolbar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    column-gap: 1em;
+}
+
+/* forces the centering */
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.board > .col {
+    padding: 0 0.75rem 1.5rem 0.75rem !important;
+}
+
+.box {
+    padding: 1em;
+    height: 13em;
+
+    box-shadow: 0px 0px 10px #a8a8a8;
+    border-radius: 3px;
+}
+
+
+/* common elements */
+
+.hat {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative; */
+
+    background-color: #031A66;
+}
+
+/* if .logo is inside .col, defines the max height */
+.hat .col {
+    height: 6em;
+}
+
+.hat .logo {
+    height: 100%;
+}
+
+/* the next three blocks are here to hack the
+   builtin materialize search bar and allow
+   custom size */
+.hat-search {
+    height: 3em;
+    border-radius: 1.5em;
+    overflow: hidden;
+}
+
+.hat-search i {
+    line-height: 1.9em !important;
+}
+
+.hat-search input {
+    /* width: calc(100% - 5rem) !important; */
+}
