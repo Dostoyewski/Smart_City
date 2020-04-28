@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import mimetypes
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -146,14 +147,16 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 WEBPUSH_SETTINGS = {
-    "VAPID_PUBLIC_KEY": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEg1L1mT0LVhczdKdWAmcTdFbbc03zBC6nhknzfc1sonG0P3HpqRWxGEX1MzJ08hGag1wd4LPc6lT2DKX1iKvSmQ==",
-    "VAPID_PRIVATE_KEY":"MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgf0kEAIQax6LGOiPqmrVeA+6Ftp+IT5a/TzG2ZowIVcyhRANCAASDUvWZPQtWFzN0p1YCZxN0VttzTfMELqeGSfN9zWyicbQ/cempFbEYRfUzMnTyEZqDXB3gs9zqVPYMpfWIq9KZ",
-    "VAPID_ADMIN_EMAIL": "gcherepennicov@gmail.com"
+    "VAPID_PUBLIC_KEY": "BGE1WfBYo8v-o3ots4dK2zLyJo2M8V64rdcNrJsB4Zjx2Mjo5GMB9C-fGFr-XeBCWk23gBZ6WUevGAxSd1LcF8U",
+    "VAPID_PRIVATE_KEY": "MXCNkC9v2PRDHiV-EPCwHtCC1IIyNmzbvy_8yhmjmGc",
+    "VAPID_ADMIN_EMAIL": "fdrkondor@gmail.com"
 }
+
+NOTIFICATION_KEY = 'BPIag9NQTlil0FLram4-5zZdQ6a0bcl6yzL3h0zUAewCpli1Jz9av0tcQsyLSAjuXeqAsYaRDnYRKaVcheBMCIg'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -171,3 +174,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = "/static"
+mimetypes.add_type("application/javascript", STATIC_ROOT + "/js/.js", True)

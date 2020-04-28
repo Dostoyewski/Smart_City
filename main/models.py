@@ -44,7 +44,6 @@ class UserProfile(models.Model):
     # Флаг, указывающий на заполненные дополнительные поля
     isFull = models.BooleanField(default=False)
 
-
     def __str__(self):
         return "%s's profile" % self.user
 
@@ -52,6 +51,8 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     """
     This function will create UserProfile parallel with new User
+    All data about users will loaded from staff_info.xlsx,
+    which contains email, names, ages and other user info.
     :param sender: NOT_USED
     :param instance: User object
     :param created: NOT_USED
@@ -92,7 +93,7 @@ def check_status(name):
     """
     if 'администратор' in name.lower():
         return 3
-    elif 'ведущий' in name.lower() or 'начальник' in name.lower():
+    elif 'ведущий' in name.lower() or 'начальник' in name.lower() or 'главный' in name.lower():
         return 1
     elif 'директор' in name.lower():
         return 2

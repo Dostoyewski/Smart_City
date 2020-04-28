@@ -1,76 +1,110 @@
-<!DOCTYPE html>
 {% load static %}
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  
-  {% load i18n %}
-  {% load account socialaccount %}
 
-  <!--{% block head_title %}{% trans "Sign In" %}{% endblock %}-->
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  {% block content %}
+    <title>Document</title>
 
-  <!--<h1>{% trans "Sign In" %}</h1>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
-  {% get_providers as socialaccount_providers %}
+    {% load i18n %}
+    {% load account socialaccount %}
 
-  {% if socialaccount_providers %}
-  <p>{% blocktrans with site.name as site_name %}eqdACFign in with one
-  of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-  for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+    <!--{% block head_title %}{% trans "Sign In" %}{% endblock %}-->
 
-  <div class="socialaccount_ballot">
+    {% block content %}
 
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
+    <!--<h1>{% trans "Sign In" %}</h1>
 
-    <div class="login-or">{% trans 'or' %}</div>
+    {% get_providers as socialaccount_providers %}
 
-  </div>
+    {% if socialaccount_providers %}
+    <p>{% blocktrans with site.name as site_name %}eqdACFign in with one
+    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
-  {% include "socialaccount/snippets/login_extra.html" %}
+    <div class="socialaccount_ballot">
 
-  {% else %}
-  <p>{% blocktrans %}If you have not created an account yet, then please
-  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-  {% endif %}
+      <ul class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
 
+      <div class="login-or">{% trans 'or' %}</div>
 
-  -->
-  {% endblock %}
-</head>
-<body>
-  <div class="main-signin">
-    <div class="main-signin__head">
-      <p>ВОЙТИ</p>
     </div>
-    <div class="main-signin__middle">
-      <div class="middle__form">
-        <form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
-          {{ form.as_p }}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-          <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-        </form>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% else %}
+    <p>{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+    {% endif %}
+
+
+    -->
+    {% endblock %}
+  </head>
+
+  <body>
+    <div class="screen-height-filler valign-wrapper">
+      <div class="container row center">
+        <div class="col m8 offset-m2 s12 white popup">
+          <h2>Войти</h2>
+
+          <div class="divider"></div>
+
+          <div class="section">
+            <form action="{% url 'account_login' %}" method="POST">
+              {% csrf_token %}
+
+              <div class="input-field">
+                <input type="text" id="id_login" name="login" tabindex="1" required>
+                <label for="login">Имя пользователя</label>
+              </div>
+
+              <div class="input-field">
+                <input type="password" id="id_password" name="password" tabindex="2" required>
+                <label for="password">Пароль</label>
+              </div>
+
+              <label>
+                <input type="checkbox" id="id_remember" name="remember" tabindex="10">
+                <span>Запомнить меня</span>
+              </label>
+
+              <div class="flex-toolbar">
+                <a
+                  href="{% url 'account_reset_password' %}"
+                  class="btn-flat waves-effect waves-dark"
+                  tabindex="3">{% trans "Забыли пароль?" %}
+                </a>
+
+                <button
+                  class="btn-large waves-effect waves-light"
+                  tabindex="4"
+                  type="submit">{% trans "Войти" %}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="section left">
+            <a
+              href="/accounts/signup"
+              class="btn-flat waves-effect waves-dark"
+              tabindex="5">Регистрация
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="main-signin__foot">
-      <div class="foot__left">
-        <p>Зарегистироваться через:</p>
-      </div>
-      <div class="foot__right">
-        <div class="twit"><a href="#"></a></div>
-        <div class="face"><a href="#"></a></div>
-      </div>
-    </div>
-  </div>
-</body>
+
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+  </body>
 </html>
 
