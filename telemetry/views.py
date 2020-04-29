@@ -88,7 +88,8 @@ def main_telemetry_page(request):
     return render(request, 'telemetry/home.html', {'user': request.user})
 
 
-def data_all(request):
+@csrf_exempt
+def get_data(request):
     """
     This function will display all telemetry from devices.
 
@@ -99,10 +100,10 @@ def data_all(request):
              'params' : array with displaying parameters: ['temp', 'vibration', 'power', 'load', 'time']
     :return: JSON with devices and telemetry
     """
-    devices = Device.objects.all()
-    all_data = []
-    for device in devices:
-        if request.method == 'POST':
+    if request.method == 'POST':
+        devices = Device.objects.all()
+        all_data = []
+        for device in devices:
             body = request.body
             request_data = json.loads(body)
             display_params = request_data['params']
@@ -112,26 +113,34 @@ def data_all(request):
             else:
                 data = StatData.objects.filter(date__range=[request_data['start_date'],
                                                             request_data['end_date']])
-        else:
-            display_params = ['temp', 'vibration', 'power', 'load', 'time']
-            data = StatData.objects.filter(device=device)
-        params = []
-        for obj in data:
-            z = {'date': str(obj.date).split(sep='+')[0]}
-            if 'temp' in display_params:
-                z['temp'] = obj.temp
-            if 'vibration' in display_params:
-                z['vibration'] = obj.vibration
-            if 'power' in display_params:
-                z['power'] = obj.power
-            if 'load' in display_params:
-                z['load'] = obj.load
-            if 'time' in display_params:
-                z['time'] = obj.time
-            params.append(z)
-        all_data.append({'device': device.idDevice,
-                         'data': params})
-    return render(request, 'telemetry/all.html', {'stats': json.dumps(all_data)})
+            params = []
+            for obj in data:
+                z = {'date': str(obj.date).split(sep='+')[0]}
+                if 'temp' in display_params:
+                    z['temp'] = obj.temp
+                if 'vibration' in display_params:
+                    z['vibration'] = obj.vibration
+                if 'power' in display_params:
+                    z['power'] = obj.power
+                if 'load' in display_params:
+                    z['load'] = obj.load
+                if 'time' in display_params:
+                    z['time'] = obj.time
+                params.append(z)
+            all_data.append({'device': device.idDevice,
+                             'data': params})
+        return JsonResponse(200, json.dumps(all_data))
+    else:
+        return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
+
+
+def data_all(request):
+    """
+    Render of page with graphics
+    :param request:
+    :return:
+    """
+    return render(request, 'telemetry/all.html')
 
 
 def data_critical(request):
