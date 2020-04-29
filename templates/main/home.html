@@ -13,6 +13,8 @@
 
         <link rel="stylesheet" href="{% static 'css/common.css' %}" />
         <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style_home.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/media-hover-effects.css' %}" />
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
@@ -50,31 +52,56 @@
         </div>
 
         <div class="row board">
-            <div class="col m4 s12 l3">
-                <div class="red box">
-                    test
+            <div class="row">                
+                <div class="col s12 m6 grid">
+                  <figure class="effect-sadie white popup hard-card">
+                    <img src="{% static 'images/box1.png' %}" alt="img06" />
+                    <figcaption>
+                      <h2>Теле
+                        <span>Метрия</span>
+                      </h2>
+                      <p>Статистика по работе подконтрольного оборудования</p>
+                      <a href="#">View more</a>
+                    </figcaption>
+                  </figure>
                 </div>
-            </div>
-            <div class="col m4 s12 l3">
-                <div class="green box">
-                    test
+                <div class="col s12 m6 grid ">
+                  <figure class="effect-sadie white popup hard-card">
+                    <img src="{% static 'images/box2.png' %}" alt="img03" />
+                    <figcaption>
+                      <h2>Карто
+                        <span>графия</span>
+                      </h2>
+                      <p> интерактивную карту с отображением данных компании и/или сторонней необходимой информации на ней</p>
+                      <a href="#">View more</a>
+                    </figcaption>
+                  </figure>
                 </div>
-            </div>
-            <div class="col m4 s12 l3">
-                <div class="teal box">
-                    test
+                <div class="col s12 m6 grid">
+                    <figure class="effect-sadie white popup hard-card">
+                      <img src="{% static 'images/box3.png' %}" alt="img03" />
+                      <figcaption>
+                        <h2>CRM
+                          <span>система</span>
+                        </h2>
+                        <p>Организация работы с персоналом компании и  клиентами. Прием и обработка входящих от клиентов заявок</p>
+                        <a href="#">View more</a>
+                      </figcaption>
+                    </figure>
                 </div>
-            </div>
-            <div class="col m4 s12 l3">
-                <div class="blue box">
-                    test
+                <div class="col s12 m6 grid">
+                    <figure class="effect-sadie white popup hard-card">
+                      <img src="{% static 'images/box4.png' %}" alt="img03" />
+                      <figcaption>
+                        <h2>Анализ
+                          <span>данных</span>
+                        </h2>
+                        <p>Анализ работы компании, а также статистика по работе всех систем</p>
+                        <a href="#">View more</a>
+                      </figcaption>
+                    </figure>
                 </div>
-            </div>
-            <div class="col m4 s12 l3">
-                <div class="orange box">
-                    test
-                </div>
-            </div>
+            </div>            
         </div>
 
         <script src="{% static 'js/materialize.min.js' %}"></script>
