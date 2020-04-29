@@ -37,11 +37,6 @@ body {
     align-items: center;
 }
 
-.flex-right-toolbar {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-}
 
 .flex-right-toolbar > * {
     margin-left: 1em;
@@ -111,6 +106,15 @@ body {
     line-height: 1.9em !important;
 }
 
+.user-section-negative-margin {
+    position: relative;
+    margin-top: -115px;
+}
+
+img.responsive-img, video.responsive-video {
+    max-width: 100%;
+    height: auto;
+}
 
 /* TODO: move to a proper place */
 .text_for_user {
