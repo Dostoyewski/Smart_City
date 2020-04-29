@@ -3311,6 +3311,7 @@ table span.badge {
 .col .row {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
+  margin-bottom: 0rem;
 }
 
 .section {

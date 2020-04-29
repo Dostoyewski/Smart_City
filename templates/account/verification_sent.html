@@ -1,12 +1,31 @@
-{% extends "account/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% load i18n %}
+    <title>Document</title>
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
-{% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
-
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
-
-{% endblock %}
+    {% load i18n %}    
+    {% block content %} 
+</head>
+<body>    
+    <div class="screen-height-filler valign-wrapper">
+        <div class="container row center">
+            <div class="col m8 offset-m2 s12 white popup">
+                <h2>Подтвердите ваш e-mail</h2>
+                <div class="divider"></div>
+                
+                <div class="section center">
+                    <p class="text_for_user">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
