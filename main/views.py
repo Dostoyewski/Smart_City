@@ -86,7 +86,8 @@ def profile(request):
                                                       'vorname': obj.vorname, 'fname': obj.fathername,
                                                       'gender': obj.gender, 'age': age,
                                                       'position': obj.position, 'exp': obj.exp,
-                                                     'isFull': obj.isFull})
+                                                     'isFull': obj.isFull, 'avatar': obj.avatar,
+                                                     'bdate': obj.age})
     except:
         return HttpResponseRedirect("/accounts/changeform/")
 
