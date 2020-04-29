@@ -129,7 +129,6 @@ def get_data(request):
                 params.append(z)
             all_data.append({'device': device.idDevice,
                              'data': params})
-        print(all_data)
         return JsonResponse(status=200, data={"data": all_data}, safe=False)
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
@@ -156,16 +155,22 @@ def data_critical(request):
         data = StatData.objects.filter(device=device)
         params = []
         for obj in data:
-            if not check_parameters('critical', obj)['status']:
-                z = {'date': str(obj.date).split(sep='+')[0],
-                     'temp': obj.temp,
-                     'vibration': obj.vibration,
-                     'power': obj.power,
-                     'load': obj.load,
-                     'time': obj.time
-                     }
+            message = check_parameters('critical', obj)
+            if not message['status']:
+                z = {'date': str(obj.date).split(sep='+')[0]}
+                for err in message['errors']:
+                    if err['message'] == 'temp':
+                        z['temp'] = obj.temp
+                    if err['message'] == 'vibr':
+                        z['vibration'] = obj.vibration
+                    if err['message'] == 'pow':
+                        z['power'] = obj.power
+                    if err['message'] == 'vibr':
+                        z['load'] = obj.load
+                    if err['message'] == 'vibr':
+                        z['time'] = obj.time
                 params.append(z)
-        if not params:
+        if not(not params):
             all_data.append({'device': device.idDevice,
                              'data': params})
     if not all_data:
@@ -187,16 +192,22 @@ def data_attention(request):
         data = StatData.objects.filter(device=device)
         params = []
         for obj in data:
-            if not check_parameters('danger', obj)['status']:
-                z = {'date': str(obj.date).split(sep='+')[0],
-                     'temp': obj.temp,
-                     'vibration': obj.vibration,
-                     'power': obj.power,
-                     'load': obj.load,
-                     'time': obj.time
-                     }
+            message = check_parameters('danger', obj)
+            if not message['status']:
+                z = {'date': str(obj.date).split(sep='+')[0]}
+                for err in message['errors']:
+                    if err['message'] == 'temp':
+                        z['temp'] = obj.temp
+                    if err['message'] == 'vibr':
+                        z['vibration'] = obj.vibration
+                    if err['message'] == 'pow':
+                        z['power'] = obj.power
+                    if err['message'] == 'vibr':
+                        z['load'] = obj.load
+                    if err['message'] == 'vibr':
+                        z['time'] = obj.time
                 params.append(z)
-        if not params:
+        if not(not params):
             all_data.append({'device': device.idDevice,
                              'data': params})
     if not all_data:
@@ -221,54 +232,34 @@ def check_parameters(flag, data):
         # Loading danger params
         if data.temp > device.danger_temp:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'temp'})
+            errors.append({'message': 'temp'})
         if data.power > device.danger_pow:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'pow'})
+            errors.append({'message': 'pow'})
         if data.vibration > device.danger_vibr:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'vibr'})
+            errors.append({'message': 'vibr'})
         if data.time > device.danger_time:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'time'})
+            errors.append({'message': 'time'})
         if data.load > device.danger_load:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'load'})
+            errors.append({'message': 'load'})
     elif flag == 'critical':
         # Loading critical params
         if data.temp > device.critical_temp:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'temp'})
+            errors.append({'message': 'temp'})
         if data.power > device.critical_pow:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'pow'})
+            errors.append({'message': 'pow'})
         if data.vibration > device.critical_vibr:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'vibr'})
+            errors.append({'message': 'vibr'})
         if data.time > device.critical_time:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'time'})
+            errors.append({'message': 'time'})
         if data.load > device.critical_load:
             status = False
-            errors.append({'status': flag,
-                           'isOK': False,
-                           'message': 'load'})
+            errors.append({'message': 'load'})
     return {'status': status, 'errors': errors}
