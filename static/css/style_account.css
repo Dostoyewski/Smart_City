@@ -1,0 +1,39 @@
+.user-section-negative-margin {
+    position: relative;
+    margin-top: -10%;
+}
+
+img.responsive-img, video.responsive-video {
+    max-width: 100%;
+    height: auto;
+}
+
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+.container {
+    width: 100%!important;
+    max-width: 100%!important;
+    margin: 0 auto;
+    padding: 0 .5rem;
+}
+
+
+
+.user-section-negative-margin-right{
+    width: 100%; 
+    margin-left: auto; 
+    left: auto;
+    right: auto;
+    margin-top: -100px;
+}
+
+.section-img-top{
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.user-profile{
+    margin-bottom: 0rem !important;
+}

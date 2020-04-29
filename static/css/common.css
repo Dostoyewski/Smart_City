@@ -106,37 +106,7 @@ body {
     line-height: 1.9em !important;
 }
 
-.user-section-negative-margin {
-    position: relative;
-    margin-top: -250px;
-}
 
-img.responsive-img, video.responsive-video {
-    max-width: 100%;
-    height: auto;
-}
-
-*, :after, :before {
-    box-sizing: inherit;
-}
-
-.container {
-    width: 100%!important;
-    max-width: 100%!important;
-    margin: 0 auto;
-    padding: 0 .5rem;
-}
-
-@media only screen and (min-width: 601px)
-.row .col.m8 {
-    width: 66.66667%;
-}
-@media only screen and (min-width: 601px)
-.row .col.m1, .row .col.m10, .row .col.m11, .row .col.m12, .row .col.m2, .row .col.m3, .row .col.m4, .row .col.m5, .row .col.m7, .row .col.m8, .row .col.m9 {
-    right: auto;
-    left: auto;
-    margin-left: auto;
-}
 
 /* TODO: move to a proper place */
 .text_for_user {

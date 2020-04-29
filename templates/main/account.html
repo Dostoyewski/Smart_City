@@ -8,6 +8,7 @@
 	<title>Document</title>
 
 	<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/style_account.css' %}" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -46,9 +47,9 @@
 
 	<div class="col s12">
 		<div class="container">
-			<div class="section">
+			<div class="section section-img-top">
 				<div class="row user-profile mt-1 ml-0 mr-0">
-					<img class="responsive-img" alt="" src="{% static 'images/123.jpg' %}">
+					<img class="responsive-img" alt="" src="{% static 'images/1234.jpg' %}">
 				</div>
 			</div>
 			<div class="section" id="user-profile">
@@ -56,12 +57,12 @@
 					<div class="col s12 m4 l3 user-section-negative-margin">
 						<div class="row">
 							<div class="col s12 center-align ">
-							  <img class="responsive-img circle z-depth-5 hoverable"  width="80%" src="{% static 'images/test2.jpg' %}"
+							  <img class="responsive-img circle z-depth-5 hoverable"  width="60%" src="{% static 'images/test2.jpg' %}"
 								alt="">
 							  <br>
 							  <a class="waves-effect waves-light btn mt-5 border-radius-4">диалог</a>
 							</div>
-							<hr>
+							<!--<hr>-->
 							<!--<div class="row user-projects">
 								<h6 class="col s12">Projects</h6>
 								<div class="col s4">
@@ -94,10 +95,10 @@
 							</div>-->
 						</div>
 					</div>
-					<div class="col s12 m8 l6">
-						<div class="card-content card-border-gray">
+					<div class="col s12 m8 l6 user-section-negative-margin-right">
+						<div class="card-content card-border-gray white popup ">
 						<!--<div class="screen-height-filler valign-wrapper white popup  hoverable">-->
-							<h2>Личный кабинет сотрудника</h2>
+							<h2 class="right-align text_for_user" >Личный кабинет сотрудника</h2>
 					  
 								<div class="divider"></div>
 					  
