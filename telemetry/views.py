@@ -37,7 +37,10 @@ def load_data(filename):
                 data = data[0].split(sep='.')
                 data = [int(i) for i in data]
                 time = [int(i) for i in time]
-                date = datetime.datetime(data[2], data[1], data[0], time[0], time[1], time[2])
+                try:
+                    date = datetime.datetime(data[2], data[1], data[0], time[0], time[1], time[2])
+                except IndexError:
+                    date = datetime.datetime(data[2], data[1], data[0], time[0], time[1], 0)
                 stat, created = StatData.objects.get_or_create(device_id=device.pk, device__idDevice=int(mech),
                                                                date=date)
                 stat.temp = float(df['Temperature'][index].replace(',', '.'))
@@ -51,6 +54,7 @@ def load_data(filename):
         return False
 
 
+@csrf_exempt
 def update_db(request):
     """
     This function will update current db
@@ -69,6 +73,7 @@ def update_db(request):
         for file in files:
             if file[-3:] == 'dat':
                 load_data(file)
+                print(file)
         return HttpResponse(200)
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
