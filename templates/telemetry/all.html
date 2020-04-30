@@ -87,19 +87,19 @@
 			<div class="col l9 m12 s12">
 				<div class="row">
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="temp" data-name="Temp" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="temp" data-name="Temp" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="vibration" data-name="Vibration" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="vibration" data-name="Vibration" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="power" data-name="Power" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="power" data-name="Power" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="load" data-name="Load" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="load" data-name="Load" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="time" data-name="Time" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="time" data-name="Time" height="200"></canvas>
 					</div>
 				</div>
 			</div>
@@ -120,19 +120,19 @@
 			<div class="col l9 m12 s12">
 				<div class="row">
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="temp" data-name="Temp" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="temp" data-name="Temp" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="vibration" data-name="Vibration" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="vibration" data-name="Vibration" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="power" data-name="Power" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="power" data-name="Power" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="load" data-name="Load" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="load" data-name="Load" height="200"></canvas>
 					</div>
 					<div class="col l6 s12">
-						<canvas class="chartik chartik-popup" data-target="time" data-name="Time" height="200"></canvas>
+						<canvas class="chartik chartik-popup loading" data-target="time" data-name="Time" height="200"></canvas>
 					</div>
 				</div>
 			</div>
@@ -235,6 +235,14 @@
 				propagate(checkbox)
 				updateCharts()
 			}
+
+			function clearDevices() {
+				devices = {}
+
+				for (let each of devicesButtons) {
+					each.innerHTML = ''
+				}
+			}
 		</script>
 
 		<script>
@@ -291,16 +299,13 @@
 			}
 
 			function createLineCharts(data) {
-				while (lineCharts.length > 0) {
-					let chart = lineCharts.pop()
-					chart.destroy()
-				}
-
 				for (let each of lineChartiks) {
 					lineCharts.push(new Chart(
 						each.getContext('2d'),
 						getLineOptions(each, data)
 					))
+
+					each.classList.remove('loading')
 				}
 			}
 
@@ -309,6 +314,17 @@
 					let newOptions = getLineOptions(lineChartiks[it], data)
 					lineCharts[it].data = newOptions.data
 					lineCharts[it].update()
+				}
+			}
+
+			function destroyLineCharts() {
+				while (lineCharts.length > 0) {
+					let chart = lineCharts.pop()
+					chart.destroy()
+				}
+
+				for (let each of lineChartiks) {
+					each.classList.add('loading')
 				}
 			}
 		</script>
@@ -362,16 +378,13 @@
 			}
 
 			function createBarCharts(data) {
-				while (barCharts.length > 0) {
-					let chart = barCharts.pop()
-					chart.destroy()
-				}
-
 				for (let each of barChartiks) {
 					barCharts.push(new Chart(
 						each.getContext('2d'),
 						getBarOptions(each, data)
 					))
+
+					each.classList.remove('loading')
 				}
 			}
 
@@ -380,6 +393,17 @@
 					let newOptions = getBarOptions(barChartiks[it], data)
 					barCharts[it].data = newOptions.data
 					barCharts[it].update()
+				}
+			}
+
+			function destroyBarCharts() {
+				while (barCharts.length > 0) {
+					let chart = barCharts.pop()
+					chart.destroy()
+				}
+
+				for (let each of barChartiks) {
+					each.classList.add('loading')
 				}
 			}
 		</script>
@@ -470,6 +494,10 @@
 					alert('Некорректный формат конечной даты')
 					return
 				}
+
+				clearDevices()
+				destroyLineCharts()
+				destroyBarCharts()
 
 				query(startDateField.value, endDateField.value, ['temp', 'vibration', 'power', 'load', 'time'])
 				.then(it => configure(it.data))
