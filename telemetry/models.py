@@ -33,3 +33,9 @@ class StatData(models.Model):
     power = models.FloatField(default=0)
     load = models.FloatField(default=0)
     time = models.IntegerField(default=0)
+
+
+class Approx(models.Model):
+    array = models.CharField(default='[]', max_length=100)
+    piers = models.FloatField(default=1)
+

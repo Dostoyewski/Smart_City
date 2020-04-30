@@ -68,13 +68,15 @@ def get_fit(data, n, param):
 
 if __name__ == "__main__":
     data = load_file()
+    dd = load_file('March.dat')
+    print(data.head())
     fig, ax = plt.subplots()
     #ax.plot(data[3]['time'], data[3]['temp'])
     ax.set(xlabel='x', ylabel='y',
            title='Ships plot')
     ax.grid()
     n = 1
-    params = ['vibration', 'power', 'load', 'temp']
+    params = ['vibration', 'load', 'temp']
 
     for n in range(12):
         print('========', n, '=========')

@@ -20,6 +20,7 @@ from allauth.account import views as auth_views
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from main.views import mapi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -52,9 +53,10 @@ urlpatterns = [
     path('accounts/password/reset/key/done/',
          auth_views.PasswordResetFromKeyDoneView.as_view(template_name='account/password_reset_from_key_done.html'),
          name="account_reset_password_from_key_done"),
-    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript'))path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('djeym/', include('djeym.urls', namespace='djeym')),
-    path('map/', views.mapi, name='mapi'),
+    path('map/', mapi, name='mapi'),
 ] + static(
     settings.STATIC_URL,
     document_root=settings.STATIC_ROOT

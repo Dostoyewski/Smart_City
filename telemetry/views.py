@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from .models import Device, StatData
+from .models import Device, StatData, Approx
 import json
 import pandas as pd
 import numpy as np
@@ -11,6 +11,7 @@ from main.views import send_to_user
 from os import listdir
 from os.path import isfile, join
 from django.contrib.auth.decorators import login_required
+from .analyse import load_file, get_fit
 
 
 @csrf_exempt
@@ -267,3 +268,7 @@ def check_parameters(flag, data):
             status = False
             errors.append({'message': 'load'})
     return {'status': status, 'errors': errors}
+
+
+def make_correlation(request):
+    Approx.objects.all().delete()
