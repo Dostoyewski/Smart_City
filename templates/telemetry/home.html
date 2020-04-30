@@ -6,16 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="vapid-key" content="{{ vapid_key }}">
+
+    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_home_telemetry.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/media-hover-effects.css' %}" />    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+
     {% if user.id %}
         <meta name="user_id" content="{{ user.id }}">
     {% endif %}
-    Телеметрия
-    <a href="{% url 'telemetry_critical' %}">Критическая телеметрия</a>
-    <a href="{% url 'telemetry_danger' %}">Опасная телеметрия</a>
-    <a href="{% url 'telemetry_all' %}">Вся телеметрия</a>
+
 </head>
 <body>
     {{ stats }}
     <script src="{% static '/js/registerSw.js' %}"></script>
 </body>
 </html>
+<body>
+      
+        <div class="hat white-text row full-screen ">
+            
+            <div class="col m3 s12 center ">
+                <a href="/">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="logo ">
+                </a>
+            </div>
+
+            <div class="col m4 offset-m1 s12 valign-wrapper">
+                <nav class="grey lighten-3 hat-search">
+                    <div class="nav-wrapper ">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" tabindex="1">
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col m4 s12 flex-right-toolbar hide-on-small-only ">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+
+            <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up ">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+            
+        </div>
+    <div class="container center">
+        <h1 class="telemetry">Телеметрия состояния оборудования</h1>
+    </div>
+
+    <div class="band white z-depth-4">
+        <div class="container cont">
+            <div class="row ">
+                <div class="row">                
+                    <div class="col s12 m4 l4 grid outer hard-card1">                        
+                        <img src="{% static 'images/laptop1.png' %}" alt="img06" />
+                        <div class="inner">
+                            <figure class="effect-sadie hard-card telem">                            
+                                <figcaption>
+                                <h2>вся
+                                    <span>Телеметрия</span>
+                                </h2>
+                                <p>Онлайн данные со всех устройств в виде графиков и таблиц</p>
+                                <a href="{% url 'telemetry_all' %}">Вся телеметрия</a>
+                                </figcaption>
+                            </figure>
+                        </div>                        
+                    </div>
+                    <div class="col s12 m4 l4 grid outer hard-card1">
+                        <img src="{% static 'images/laptop1.png' %}" alt="img03" />
+                        <div class="inner">
+                            <figure class="effect-sadie hard-card telem">                                
+                                <figcaption>
+                                <h2>в зоне <br>
+                                    <span>риска</span>
+                                </h2>
+                                <p>Параметры системы приближаются к критическим</p>
+                                <a href="{% url 'telemetry_danger' %}">Опасная телеметрия</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 grid outer hard-card1 ">
+                        <img src="{% static 'images/laptop1.png' %}" alt="img03" />
+                        <div class="inner">
+                            <figure class="effect-sadie hard-card telem">                            
+                            <figcaption>
+                                <h2>критическое
+                                <span>состояние</span>
+                                </h2>
+                                <p>Оборудование в критическом состоянии</p>
+                                <a href="{% url 'telemetry_critical' %}">Критическая телеметрия</a>
+                            </figcaption>
+                            </figure>
+                        </div>
+                    </div>            
+                </div>            
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="band white z-depth-4" style="margin-top: 2em;">
+        <div class="container cont">
+            <div class="row ">  
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>                    
+            </div>
+        </div>
+    </div>
+
+    <div class="hat white-text row" style="margin-bottom: 0em;">
+		<div class="container m3 s12 center" style="padding: 1em;">
+			<h6>© 2020 NTI THEORMECH_RELEASE</h6>
+		</div>		
+	</div>    
+
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static '/js/registerSw.js' %}"></script>
+    <script src="{% static 'js/TweenLite.min.js' %}"></script>
+    <script src="{% static 'js/EasePack.min.js' %}"></script>
+    <script src="{% static 'js/rAF.js' %}"></script>
+    <script src="{% static 'js/demo-1.js' %}"></script>
+</body>

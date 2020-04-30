@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
-
+    
     <link rel="stylesheet" href="{% static 'css/common.css' %}" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
     {% load i18n %}
@@ -24,7 +25,8 @@
                 {% user_display confirmation.email_address.user as user_display %}              
                 <div class="section center">
                     <p class="text_for_user">Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.</p>
-                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">                        
+                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}"> 
+                        {% csrf_token %}                       
                         <button 
                         class="btn-large waves-effect waves-light"
                         type="submit">{% trans 'Confirm' %}</button>

@@ -93,17 +93,16 @@ body {
     align-items: center;
 
     position: relative; */
-
-    background-color: #031A66;
+    background-image: url('../images/1940038_hat.jpeg');
 }
 
 /* if .logo is inside .col, defines the max height */
 .hat .col {
-    height: 6em;
+    height: 9em;
 }
 
 .hat .logo {
-    height: 100%;
+    height: 95%;
 }
 
 /* the next three blocks are here to hack the

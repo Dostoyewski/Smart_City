@@ -3,7 +3,7 @@
 	position: relative;
 	margin: 0 auto;
 	/*padding: 1em 0 4em;*/
-	/*max-width: 1000px;*/
+	/* max-width: 1000px; */
 	list-style: none;
 	text-align: center;
 }
@@ -13,13 +13,14 @@
 	position: relative;
 	float: left;
 	overflow: hidden;
-	margin: 10px 1%;
+	/* margin: 10px 1%; */
 	min-width: 320px;
 	max-width: 480px;
 	max-height: 360px;
 	width: 100%;
 	/* background: #3085a3; */
 	text-align: center;
+	height: 100% !important;
 	cursor: pointer;
 }
 
@@ -178,6 +179,11 @@ figure.effect-sadie h2 {
 	transition: transform 0.35s, color 0.35s;
 	-webkit-transform: translate3d(0,-50%,0);
 	transform: translate3d(0,-50%,0);
+}
+
+figure.telem h2{
+	color: #32fbfc !important;
+	font-size: 3rem;
 }
 
 figure.effect-sadie figcaption::before,
