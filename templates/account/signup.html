@@ -1,34 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
+  <title>Document</title>
 
-    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
 
 
-    {% load i18n %}
-    
+  {% load i18n %}
+  
 
-    {% block content %}
-    
-    <!--<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-    -->
+  {% block content %}
+  
+  <!--<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+  -->
 
-    {% endblock %}
-  </head>
+  {% endblock %}
+</head>
   <body>
     <div class="screen-height-filler valign-wrapper container demo-1 full-screen">
       <div id="large-header" class="large-header outer">
         <canvas id="demo-canvas"></canvas>
-        <div class="container row center inner">
+        <div class="container row center inner" style="top: 50%;">
           <div class="col m8 offset-m2 s12 white popup">
             <h2>Зарегистироваться</h2>
 
