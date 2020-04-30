@@ -131,7 +131,7 @@ def get_data(request):
                 params.append(z)
             all_data.append({"device": device.idDevice,
                              "data": params})
-        return JsonResponse(status=200, data={"data": all_data}, safe=False)
+        return JsonResponse(status=200, data={"data": json.dumps(all_data)}, safe=False)
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
 
