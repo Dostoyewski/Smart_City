@@ -22,10 +22,10 @@ def load_file(filenames=['February.dat']):
     df = []
     for filename in filenames:
         df.append(pd.read_table("C:/Users/Федор/Documents/GIT/Smart_City/static/datafiles/" + filename, sep='\t',
-                                     usecols=['Machine ID', 'Date',
-                                              'Temperature', 'Vibration',
-                                              'Power', 'System load',
-                                              'Work time']))
+                                usecols=['Machine ID', 'Date',
+                                         'Temperature', 'Vibration',
+                                         'Power', 'System load',
+                                         'Work time']))
     df = pd.concat(df).drop_duplicates().reset_index(drop=True)
     df = df.applymap(lambda x: x.replace(',', '.'))
     idd = df['Machine ID'].unique()
@@ -72,7 +72,7 @@ def get_fit(data, n, param):
 if __name__ == "__main__":
     data = load_file(['February.dat', 'March.dat'])
     fig, ax = plt.subplots()
-    #ax.plot(data[3]['time'], data[3]['temp'])
+    # ax.plot(data[3]['time'], data[3]['temp'])
     ax.set(xlabel='x', ylabel='y',
            title='Ships plot')
     ax.grid()
@@ -94,4 +94,3 @@ if __name__ == "__main__":
     plt.plot(x_t, p(x_t), '-')
     plt.plot(X, Y)
     plt.show()
-

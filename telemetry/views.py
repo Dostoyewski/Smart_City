@@ -304,4 +304,16 @@ def make_correlation(request):
 
 
 def display_params(request):
-    pass
+    """
+    will display parameters
+    :param request:
+    :return:
+    """
+    data = []
+    func = Approx.objects.all()
+    for obj in func:
+        data.append({"device": obj.device,
+                     "param": obj.param,
+                     "piers": obj.piers,
+                     "array": obj.array})
+    return render(request, 'telemetry/analyse.html', {'approx': data})
