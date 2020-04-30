@@ -38,4 +38,6 @@ class StatData(models.Model):
 class Approx(models.Model):
     array = models.CharField(default='[]', max_length=100)
     piers = models.FloatField(default=1)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    param = models.CharField(max_length=20)
 

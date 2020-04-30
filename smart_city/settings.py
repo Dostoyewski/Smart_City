@@ -191,12 +191,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # 1. Notify administrator of a new custom marker.
 # 2. Notify user about successful moderation of his marker.
 # Mail server for testings: $ python -m smtpd -n -c DebuggingServer localhost:1025
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'noreply@site.net'
 
 # django-ckeditor
 # https://github.com/django-ckeditor/django-ckeditor
