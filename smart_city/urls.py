@@ -52,5 +52,14 @@ urlpatterns = [
     path('accounts/password/reset/key/done/',
          auth_views.PasswordResetFromKeyDoneView.as_view(template_name='account/password_reset_from_key_done.html'),
          name="account_reset_password_from_key_done"),
-    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript'))path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('djeym/', include('djeym.urls', namespace='djeym')),
+    path('map/', views.mapi, name='mapi'),
+] + static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+) + static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
+

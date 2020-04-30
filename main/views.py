@@ -130,3 +130,7 @@ def update_profile(request):
             'exp': obj.exp
         })
     return render(request, 'main/change.html', {'form': form})
+
+  
+def mapi(request):
+    return render(request,'test.html')
