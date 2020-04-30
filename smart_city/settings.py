@@ -15,7 +15,7 @@ import mimetypes
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+mimetypes.add_type("application/javascript", ".js", True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'main',
     'webpush',
     'allauth',
+    'map',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
@@ -68,7 +69,15 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.vk',
+    'imagekit',
+    'ckeditor',
+    'ckeditor_uploader',
+    'colorful',
+    'adminsortable',
+    'djeym',
+    'yandex_maps',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +87,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Smart_City.urls'
@@ -174,4 +184,82 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = "/static"
-mimetypes.add_type("application/javascript", STATIC_ROOT + "/js/.js", True)
+mimetypes.add_type("application/javascript", STATIC_ROOT + ".js", True)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# To send test messages.
+# 1. Notify administrator of a new custom marker.
+# 2. Notify user about successful moderation of his marker.
+# Mail server for testings: $ python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'noreply@site.net'
+
+# django-ckeditor
+# https://github.com/django-ckeditor/django-ckeditor
+CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_FILENAME_GENERATOR = 'djeym.utils.get_filename'
+CKEDITOR_THUMBNAIL_SIZE = (300, 300)
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+CKEDITOR_IMAGE_QUALITY = 40
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_ALLOW_NONIMAGE_FILES = False  # False - Only image files. (At your discretion)
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': '100%',
+    },
+    'djeym': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': 362,
+        'colorButton_colors': 'F44336,C62828,E91E63,AD1457,9C27B0,6A1B9A,'
+                              '673AB7,4527A0,3F51B5,283593,2196F3,1565C0,'
+                              '03A9F4,0277BD,00BCD4,00838F,009688,00695C,'
+                              '4CAF50,2E7D32,8BC34A,558B2F,CDDC39,9E9D24,'
+                              'FFEB3B,F9A825,FFC107,FF8F00,FF9800,EF6C00,'
+                              'FF5722,D84315,795548,4E342E,607D8B,37474F,'
+                              '9E9E9E,424242,000000,FFFFFF',
+        'colorButton_enableAutomatic': False,
+        'colorButton_enableMore': True
+    }
+}
+
+
+PROJECT_ROOT = BASE_DIR
+
+# Settings specific for koalixcrm
+
+
+# Settings specific for filebrowser
+
+
+# (If a non-authenticated user requests an editor page.)
+# (Если не аутентифицированный пользователь запросит страницу редактора.)
+LOGIN_URL = '/admin/'  # or change to your URL
+
+# Required for django-admin-sortable
+# https://github.com/alsoicode/django-admin-sortable#configuration
+CSRF_COOKIE_HTTPONLY = False
+
+# The API key is used in the free and paid versions.
+# You can get the key in the developer’s office - https://passport.yandex.com/
+# ( API-ключ используется в свободной и платной версиях.
+#   Получить ключ можно в кабинете разработчика - https://developer.tech.yandex.ru/ )
+DJEYM_YMAPS_API_KEY = 'fafde453-2c72-4d6e-b318-fda89f6c09ef'
+YANDEX_MAPS_API_KEY = 'fafde453-2c72-4d6e-b318-fda89f6c09ef'
+
+# For paid use API --> True
+# ( Для платного использования --> True )
+DJEYM_YMAPS_API_KEY_FOR_ENTERPRISE = False
+
+# Map download mode. Default = 'release'
+# (Режим загрузки карт.)
+# DJEYM_YMAPS_DOWNLOAD_MODE = 'debug'

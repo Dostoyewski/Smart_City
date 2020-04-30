@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification, send_group_notification
 from django.conf import settings
 import json
+from map.views import CreateLine, CreateHeat
+ 
 
 
 @require_POST
@@ -129,3 +131,9 @@ def update_profile(request):
             'exp': obj.exp
         })
     return render(request, 'main/change.html', {'form': form})
+
+
+def mapi(request):
+    
+    return render(request,'test.html')
+    
