@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style_home.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style_home_telemetry.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/media-hover-effects.css' %}" />    
+    <link rel="stylesheet" href="{% static 'css/media-hover-effects.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
@@ -20,6 +20,7 @@
         <meta name="user_id" content="{{ user.id }}">
     {% endif %}
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     {{ stats }}
@@ -27,9 +28,9 @@
 </body>
 </html>
 <body>
-      
+
         <div class="hat white-text row full-screen ">
-            
+
             <div class="col m3 s12 center ">
                 <a href="/">
                     <img src="{% static 'images/logo.png' %}" alt="" class="logo ">
@@ -58,7 +59,7 @@
                 <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
                 <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
             </div>
-            
+
         </div>
     <div class="container center">
         <h1 class="telemetry">Телеметрия состояния оборудования</h1>
@@ -67,11 +68,11 @@
     <div class="band white z-depth-4">
         <div class="container cont">
             <div class="row ">
-                <div class="row">                
-                    <div class="col s12 m4 l4 grid outer hard-card1">                        
+                <div class="row">
+                    <div class="col s12 m4 l4 grid outer hard-card1">
                         <img src="{% static 'images/laptop1.png' %}" alt="img06" />
                         <div class="inner">
-                            <figure class="effect-sadie hard-card telem">                            
+                            <figure class="effect-sadie hard-card telem">
                                 <figcaption>
                                 <h2>вся
                                     <span>Телеметрия</span>
@@ -80,12 +81,12 @@
                                 <a href="{% url 'telemetry_all' %}">Вся телеметрия</a>
                                 </figcaption>
                             </figure>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="col s12 m4 l4 grid outer hard-card1">
                         <img src="{% static 'images/laptop1.png' %}" alt="img03" />
                         <div class="inner">
-                            <figure class="effect-sadie hard-card telem">                                
+                            <figure class="effect-sadie hard-card telem">
                                 <figcaption>
                                 <h2>в зоне <br>
                                     <span>риска</span>
@@ -99,7 +100,7 @@
                     <div class="col s12 m4 l4 grid outer hard-card1 ">
                         <img src="{% static 'images/laptop1.png' %}" alt="img03" />
                         <div class="inner">
-                            <figure class="effect-sadie hard-card telem">                            
+                            <figure class="effect-sadie hard-card telem">
                             <figcaption>
                                 <h2>критическое
                                 <span>состояние</span>
@@ -109,8 +110,8 @@
                             </figcaption>
                             </figure>
                         </div>
-                    </div>            
-                </div>            
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -119,12 +120,12 @@
 
     <div class="band white z-depth-4" style="margin-top: 2em;">
         <div class="container cont">
-            <div class="row ">  
+            <div class="row ">
                 <br>
                 <br>
                 <br>
                 <br>
-                <br>                    
+                <br>
             </div>
         </div>
     </div>
@@ -132,8 +133,8 @@
     <div class="hat white-text row" style="margin-bottom: 0em;">
 		<div class="container m3 s12 center" style="padding: 1em;">
 			<h6>© 2020 NTI THEORMECH_RELEASE</h6>
-		</div>		
-	</div>    
+		</div>
+	</div>
 
     <script src="{% static 'js/materialize.min.js' %}"></script>
     <script src="{% static '/js/registerSw.js' %}"></script>

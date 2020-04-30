@@ -12,7 +12,20 @@ body {
 }
 
 
+/* animations */
+
+@keyframes loading-fade {
+    0% { background-color: white; }
+    50% { background-color: #e1e1e1; }
+    100% { background-color: white; }
+}
+
+
 /* common reusable helpers */
+
+.loading {
+    animation: loading-fade 2s linear 0s infinite;
+}
 
 .popup {
     border-radius: 10px;
