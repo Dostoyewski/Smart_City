@@ -235,7 +235,7 @@ PROJECT_ROOT = BASE_DIR
 
 # (If a non-authenticated user requests an editor page.)
 # (Если не аутентифицированный пользователь запросит страницу редактора.)
-LOGIN_URL = '/admin/'  # or change to your URL
+LOGIN_URL = '/accounts/login/'  # or change to your URL
 
 # Required for django-admin-sortable
 # https://github.com/alsoicode/django-admin-sortable#configuration
