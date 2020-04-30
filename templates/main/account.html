@@ -1,25 +1,169 @@
-{% extends 'base.html' %} {% block content %}
-      <div class="card #fafafa">
-		<div class="card-content #212121">
-        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
-			<b>Электронная почта:</b> {{ email }} <br>
-			<b>Имя:</b> {{name}} <br>
-			<b>Фамилия:</b> {{vorname}} <br>
-			<b>Отчество:</b> {{fname}} <br>
-			<b>Должность:</b> {{position}} <br>
-			<b>Возраст:</b> {{age}} <br>
-			<b>Пол: </b>
-			{% if gender == 0 %}
-			Мужской <br>
-			{% else %}
-			Женский <br>
-			{% endif %}
-			<b>Стаж:</b> {{exp}} <br>
-			{% if not isFull %}
-			<a href="/accounts/changeform">Обновить данные</a>
-			{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Document</title>
+
+	<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/style_account.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div class="hat white-text row">
+		<div class="col m3 s12 center">
+			<a href="/">
+				<img src="{% static 'images/logo.png' %}" alt="" class="logo">
+			</a>
 		</div>
-		<div class="card-action">
+
+		<div class="col m4 offset-m1 s12 valign-wrapper">
+			<nav class="grey lighten-3 hat-search">
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field">
+							<input id="search" type="search" tabindex="1">
+							<label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+						</div>
+					</form>
+				</div>
+			</nav>
 		</div>
-	  </div>
-{% endblock content %}
+
+		<div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
+
+		<div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
+	</div>
+
+	<div>
+		<div class="container ">			
+			<div class="section " id="user-profile">
+				<div class="card-panel hoverable">
+					<div class="row marg">
+					  <div class="col s12 m7">
+						<div class="display-flex media ">
+							<div class="col s12 m3">
+								<img src="{% static 'images/avatars/default.png' %}" alt="users view avatar"
+								height="80px" width="80px">
+							</div>
+							<div class="col s12 m9">
+								<div class="media-body">
+									<h6 class="media-heading">
+									  <span class="users-view-name">{{vorname}}</span>
+									  <span class="grey-text">@</span>
+									  <span class="users-view-username grey-text">{{user.username}}</span>
+									  <blockquote blue>
+										По всем вопросам пишите в личные сообщения :)
+									  </blockquote>
+									</h6>
+								</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
+						<a href="app-email.html" class="btn-large btn-light-indigo right-align waves-light waves-effect"><i class="material-icons">mail_outline</i></a>
+						{% if not isFull %}
+						<a href="/accounts/changeform" class="btn-small indigo">Обновить данные</a>
+						{% endif %}
+					  </div>
+					</div>
+				</div>
+				<div class="card ">
+					<div class="card-content hoverable">
+					  <div class="row indigo lighten-5 border-radius-4 mb-2">
+						<div class="col s12 m12 users-view-timeline">
+						  <h6 class="indigo-text m-0">ФИО: <span>{{name}} {{vorname}} {{fname}}</span></h6>
+						</div>
+					  </div>
+					  <div class="row">
+						<div class="col s12">
+						  <table class="striped">
+							<tbody>
+
+
+							</tbody>
+						  </table>
+						  <h6 class="mb-2 mt-2"><i class="material-icons">error_outline</i> Personal Info</h6>
+						  <table class="striped">
+							<tbody>
+								<tr>
+									<td>Должность:</td>
+									<td>{{position}}</td>
+								</tr>
+								<tr>
+									<td>E-mail:</td>
+									<td class="users-view-email">{{ email }}</td>
+								</tr>
+								<tr>
+									<td>Стаж</td>
+									<td class="users-view-name">{{exp}}</td>
+								</tr>
+
+								<tr>
+									<td>Username:</td>
+									<td class="users-view-username">{{user.username}}</td>
+								</tr>
+
+								<tr>
+									<td>День рождения:</td>
+									<td>{{bdate}}</td>
+								</tr>
+								<tr>
+									<td>Возраст</td>
+									<td class="users-view-name">{{age}}</td>
+								</tr>
+								<tr>
+									<td>Стек технологий</td>
+									<td class="users-view-name">Html/Css & React</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+							<h6 class="mb-2 mt-2"><i class="material-icons">link</i> Social Links</h6>
+							<table class="striped">
+								<tbody>
+								<tr>
+									<td>Facebook:</td>
+									<td><a href="#">https://www.facebook.com/</a></td>
+								</tr>
+								<tr>
+									<td>Instagram:</td>
+									<td><a href="#">https://www.instagram.com/</a></td>
+								</tr>
+								</tbody>
+
+						  </table>
+						</div>
+					  </div>
+					  <!-- </div> -->
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	</div>
+	<div class="hat white-text row" style="margin-bottom: 0em;">
+		<div class="container m3 s12 center" style="padding: 1em;">
+			<h6>© 2020 NTI THEORMECH_RELEASE</h6>
+		</div>		
+	</div>
+
+
+
+	<script src="{% static 'js/materialize.min.js' %}"></script>
+	<script src="{% static '/js/registerSw.js' %}"></script>
+</body>
+</html>
+
+

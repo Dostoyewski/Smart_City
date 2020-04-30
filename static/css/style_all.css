@@ -1,0 +1,36 @@
+.chartiks .col {
+    padding: 0 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.chartik-popup {
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0px 0px 10px #a8a8a8;
+}
+
+.chartik {
+    width: 100%;
+}
+
+.device {
+    /* padding: 0.5em; */
+    font-size: 1.2em;
+    width: 100%;
+}
+
+.device label {
+    padding: 1em;
+    display: block;
+
+    /* small issue with padding */
+    cursor: pointer;
+}
+
+.device span {
+    width: 100%;
+}
+
+.title {
+    padding: 0.5em 0;
+}

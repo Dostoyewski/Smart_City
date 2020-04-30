@@ -1,11 +1,31 @@
-{% extends "account/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% load i18n %}
+    <title>Document</title>
 
-{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
-{% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
+    {% load i18n %}
+    {% block content %}
+</head>
+<body>
+    <div class="screen-height-filler valign-wrapper">
+        <div class="container row center">
+            <div class="col m8 offset-m2 s12 white popup">
+                <h2>{% trans "Account Inactive" %}</h2>
+                <div class="divider"></div>                
+                <div class="section center">
+                    <p class="text_for_user">{% trans "This account is inactive." %}</p>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
-<p>{% trans "This account is inactive." %}</p>
-{% endblock %}

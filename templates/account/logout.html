@@ -12,43 +12,37 @@
 
   {% load i18n %}
   {% block content %}
-
-  
-  
-
 </head>
-<body>
-  <body>
-    <div class="screen-height-filler valign-wrapper">
-      <div class="container row center">
-        <div class="col m8 offset-m2 s12 white popup">
-          <h2>ВЫЙТИ</h2>
 
-          <div class="divider"></div>
+<body>  
+  <div class="screen-height-filler valign-wrapper">
+    <div class="container row center">
+      <div class="col m8 offset-m2 s12 white popup">
+        <h2>ВЫЙТИ</h2>
 
-          
+        <div class="divider"></div>
 
-          <!--<div class="divider"></div>-->
+        
 
-          <div class="section center">
-            <form method="post" action="{% url 'account_logout' %}">
-              {% csrf_token %}
-              
-              <div class="text_for_user">Вы уверены, что хотите выйти?</div>
-              
-              <div>
-                <button 
-                  class="btn-large waves-effect waves-light"
-                  type="submit">{% trans 'Sign Out' %}
-                </button>
-              </div>
-            </form>
-          </div>
+        <!--<div class="divider"></div>-->
+
+        <div class="section center">
+          <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            
+            <div class="text_for_user">Вы уверены, что хотите выйти?</div>
+            
+            <div>
+              <button 
+                class="btn-large waves-effect waves-light"
+                type="submit">{% trans 'Sign Out' %}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  
-  
+  </div>
   {% endblock %}
 </body>
 </html>

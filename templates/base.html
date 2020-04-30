@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,6 +8,34 @@
     {% endblock %}
   </head>
   <body>
+    <!--<div class="hat white-text row">
+      <div class="col m3 s12 center">
+          <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+      </div>
+
+      <div class="col m4 offset-m1 s12 valign-wrapper">
+          <nav class="grey lighten-3 hat-search">
+              <div class="nav-wrapper">
+                  <form>
+                      <div class="input-field">
+                          <input id="search" type="search" tabindex="1">
+                          <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                      </div>
+                  </form>
+              </div>
+          </nav>
+      </div>
+
+      <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+          <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Выйти</a>
+          <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+      </div>
+
+      <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+          <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Выйти</a>
+          <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+      </div> -->
+  </div>
     {% block body %}
 
     {% if messages %}

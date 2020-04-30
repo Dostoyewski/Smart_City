@@ -2550,7 +2550,7 @@ summary {
  * Add the correct display in IE 9-.
  */
 canvas {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 /**
@@ -3300,12 +3300,12 @@ table span.badge {
 
 @media only screen and (min-width : 601px) {
   .container {
-    width: 85%;
+    /* width: 85%; */
   }
 }
 @media only screen and (min-width : 993px) {
   .container {
-    width: 70%;
+    width: 100%;
   }
 }
 .col .row {
@@ -4288,6 +4288,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 h1 {
   font-size: 4.2rem;
+  /* color: white; */
   line-height: 110%;
   margin: 2.8rem 0 1.68rem 0;
 }

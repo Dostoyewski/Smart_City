@@ -15,7 +15,7 @@ import mimetypes
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-mimetypes.add_type("application/javascript", ".js", True)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -59,9 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'main',
+    'telemetry',
     'webpush',
     'allauth',
-    'map',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
@@ -76,8 +76,8 @@ INSTALLED_APPS = [
     'adminsortable',
     'djeym',
     'yandex_maps',
+    'map'
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,7 +87,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Smart_City.urls'
@@ -184,10 +183,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = "/static"
-mimetypes.add_type("application/javascript", STATIC_ROOT + ".js", True)
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+mimetypes.add_type("application/javascript", STATIC_ROOT + "/js/.js", True)
 
 # To send test messages.
 # 1. Notify administrator of a new custom marker.

@@ -1,17 +1,115 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="vapid-key" content="{{ vapid_key }}">
-    {% if user.id %}
-        <meta name="user_id" content="{{ user.id }}">
-    {% endif %}
-    <a href="{% url 'tab_account' %}">Account</a>
-</head>
-<body>
-    <script src="{% static '/js/registerSw.js' %}"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="vapid-key" content="{{ vapid_key }}">
+        {% if user.id %}
+            <meta name="user_id" content="{{ user.id }}">
+        {% endif %}
+
+        <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style_home.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/media-hover-effects.css' %}" />
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="hat white-text row">
+            <div class="col m3 s12 center">
+                <a href="/">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+                </a>
+            </div>
+
+            <div class="col m4 offset-m1 s12 valign-wrapper">
+                <nav class="grey lighten-3 hat-search">
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" tabindex="1">
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+
+            <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+        </div>
+
+        <div class="row board">
+            <div class="row">                
+                <div class="col s12 m6 grid">
+                  <figure class="effect-sadie white popup hard-card">
+                    <img src="{% static 'images/box1.png' %}" alt="img06" />
+                    <figcaption>
+                      <h2>Теле
+                        <span>Метрия</span>
+                      </h2>
+                      <p>Статистика по работе подконтрольного оборудования</p>
+                      <a href="{% url 'telemetry_main' %}">Вся телеметрия</a>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="col s12 m6 grid ">
+                  <figure class="effect-sadie white popup hard-card">
+                    <img src="{% static 'images/box2.png' %}" alt="img03" />
+                    <figcaption>
+                      <h2>Карто
+                        <span>графия</span>
+                      </h2>
+                      <p>Интерактивная карта с отображением данных компании и другой необходимой информации</p>
+                      <a href="#">View more</a>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="col s12 m6 grid">
+                    <figure class="effect-sadie white popup hard-card">
+                      <img src="{% static 'images/box3.png' %}" alt="img03" />
+                      <figcaption>
+                        <h2>CRM
+                          <span>система</span>
+                        </h2>
+                        <p>Организация работы с персоналом компании и  клиентами. Прием и обработка входящих от клиентов заявок</p>
+                        <a href="#">View more</a>
+                      </figcaption>
+                    </figure>
+                </div>
+                <div class="col s12 m6 grid">
+                    <figure class="effect-sadie white popup hard-card">
+                      <img src="{% static 'images/box4.png' %}" alt="img03" />
+                      <figcaption>
+                        <h2>Анализ
+                          <span>данных</span>
+                        </h2>
+                        <p>Анализ работы компании, а также статистика по работе всех систем</p>
+                        <a href="#">View more</a>
+                      </figcaption>
+                    </figure>
+                </div>
+            </div>            
+        </div>
+        <div class="hat white-text row" style="margin-bottom: 0em;">
+            <div class="container m3 s12 center" style="padding: 1em;">
+                <h6>© 2020 NTI THEORMECH_RELEASE</h6>
+            </div>		
+        </div>
+
+        <script src="{% static 'js/materialize.min.js' %}"></script>
+        <script src="{% static '/js/registerSw.js' %}"></script>
+    </body>
 </html>

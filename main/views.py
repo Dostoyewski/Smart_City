@@ -11,8 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification, send_group_notification
 from django.conf import settings
 import json
-from map.views import CreateLine, CreateHeat
- 
 
 
 @require_POST
@@ -66,7 +64,7 @@ def home(request):
     :param request:
     :return:
     """
-    send_to_user('INFO', 'This is the main page', get_object_or_404(User, pk=request.user.pk))
+    #send_to_user('INFO', 'This is the main page', get_object_or_404(User, pk=request.user.pk))
     webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     user = request.user
@@ -80,7 +78,7 @@ def profile(request):
     :param request: request to this site
     :return: JSON render
     """
-    send_to_user('INFO', 'This is your profile', get_object_or_404(User, pk=request.user.pk))
+    #send_to_user('INFO', 'This is your profile', get_object_or_404(User, pk=request.user.pk))
     try:
         obj = UserProfile.objects.get(user_id=request.user.pk)
         age = dt.date.today().year - obj.age.year
@@ -88,7 +86,8 @@ def profile(request):
                                                       'vorname': obj.vorname, 'fname': obj.fathername,
                                                       'gender': obj.gender, 'age': age,
                                                       'position': obj.position, 'exp': obj.exp,
-                                                     'isFull': obj.isFull})
+                                                     'isFull': obj.isFull, 'avatar': obj.avatar,
+                                                     'bdate': obj.age})
     except:
         return HttpResponseRedirect("/accounts/changeform/")
 
@@ -132,8 +131,6 @@ def update_profile(request):
         })
     return render(request, 'main/change.html', {'form': form})
 
-
+  
 def mapi(request):
-    
     return render(request,'test.html')
-    

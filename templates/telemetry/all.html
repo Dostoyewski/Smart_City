@@ -1,0 +1,479 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="vapid-key" content="{{ vapid_key }}">
+        {% if user.id %}
+            <meta name="user_id" content="{{ user.id }}">
+		{% endif %}
+
+		<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style_all.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}" />
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="hat white-text row">
+            <div class="col m3 s12 center">
+                <a href="/">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+                </a>
+            </div>
+
+            <div class="col m4 offset-m1 s12 valign-wrapper">
+                <nav class="grey lighten-3 hat-search">
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" tabindex="1">
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+
+            <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+		</div>
+
+		<div class="container section">
+			<div class="row">
+				<div class="col s12 row">
+					<a href="{% url 'telemetry_main' %}" class="btn waves-effect waves-light">Главная страница с телеметрией</a>
+				</div>
+				<div class="col s12 row">
+					<div class="col s12 chartik-popup flex-center">
+						<input id="start-date" type="text" class="col s4 datepicker" placeholder="Start Date">
+						<input id="end-date" type="text" class="col s4 offset-s1 datepicker" placeholder="End Date">
+						<button id="update-range" class="btn waves-effect waves-light col s2 offset-s1">Обновить</button>
+					</div>
+				</div>
+				<div class="col s12">
+					<ul class="tabs chartik-popup">
+						<li class="tab col s4"><a class="active" href="#line-graphs">Графики</a></li>
+						<li class="tab col s4"><a href="#bar-graphs">Гистограмы</a></li>
+						<li class="tab col s4"><a href="#tables">Таблица</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div id="line-graphs" class="pushed-in row chartiks">
+			<div class="col l3 m12 s12">
+				<div class="chartik-popup">
+					<div class="title flow-text center">Devices</div>
+
+					<div class="divider"></div>
+
+					<div class="devices-buttons">
+
+					</div>
+				</div>
+			</div>
+			<div class="col l9 m12 s12">
+				<div class="row">
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="temp" data-name="Temp" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="vibration" data-name="Vibration" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="power" data-name="Power" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="load" data-name="Load" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="time" data-name="Time" height="200"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="bar-graphs" class="pushed-in row chartiks">
+			<div class="col l3 m12 s12">
+				<div class="chartik-popup">
+					<div class="title flow-text center">Devices</div>
+
+					<div class="divider"></div>
+
+					<div class="devices-buttons">
+
+					</div>
+				</div>
+			</div>
+			<div class="col l9 m12 s12">
+				<div class="row">
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="temp" data-name="Temp" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="vibration" data-name="Vibration" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="power" data-name="Power" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="load" data-name="Load" height="200"></canvas>
+					</div>
+					<div class="col l6 s12">
+						<canvas class="chartik chartik-popup" data-target="time" data-name="Time" height="200"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="tables" class="container chartik-popup">
+			<div class="row">
+				<table class="col s12 highlight centered">
+					<thead>
+						<tr>
+							<th>Device</th>
+							<th>Temp</th>
+							<th>Vibration</th>
+							<th>Power</th>
+							<th>Load</th>
+							<th>Time</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+		<script src="{% static 'js/materialize.min.js' %}"></script>
+		<script src="{% static '/js/registerSw.js' %}"></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', e => {
+				let tabElements = document.querySelectorAll('.tabs')
+				let result = M.Tabs.init(tabElements, {})
+
+				let datepickers = document.querySelectorAll('.datepicker')
+				result = M.Datepicker.init(datepickers, {
+					format: 'yyyy-mm-dd'
+				})
+			})
+		</script>
+
+		<script>
+			const COLORS = ['orange', 'blue', 'green', 'red', 'black', 'pink', 'cyan', 'teal']
+
+			function getColor(id) {
+				while (id - 1 >= COLORS.length) {
+					id -= COLORS.length
+				}
+
+				return COLORS[id - 1]
+			}
+		</script>
+
+		<script>
+			let devices = {}
+			const devicesButtons = document.getElementsByClassName('devices-buttons')
+
+			function configureDevicesButtons(data) {
+				devices = {}
+
+				for (let each of data) {
+					devices[each.device] = false
+				}
+
+				for (let each of devicesButtons) {
+					for (let item of data) {
+						let value = `<label>
+							<input type="checkbox" onclick="toggleDevice(this)" data-target="${item.device}" />
+							<span>${"Device #" + item.device}</span>
+						</label>`
+
+						let button = document.createElement('div')
+						button.classList.add('waves-effect')
+						button.classList.add('waves-dark')
+						button.classList.add('device')
+						button.innerHTML = value
+
+						each.appendChild(button)
+					}
+				}
+
+				if (data.length > 0) {
+					let first = devicesButtons[0].querySelector('[type="checkbox"]')
+					first.checked = true
+					propagate(first)
+				}
+			}
+
+			function propagate(checkbox) {
+				devices[checkbox.dataset.target] = checkbox.checked
+
+				for (let each of devicesButtons) {
+					let other = each.querySelector(`[data-target="${checkbox.dataset.target}"]`)
+					other.checked = checkbox.checked
+				}
+			}
+
+			function toggleDevice(checkbox) {
+				propagate(checkbox)
+				updateCharts()
+			}
+		</script>
+
+		<script>
+			const lineGraphs = document.getElementById('line-graphs')
+			const lineChartiks = lineGraphs.getElementsByClassName('chartik')
+
+			let lineCharts = []
+
+			function getLineOptions(chartik, data) {
+				return {
+					type: 'line',
+					data: {
+						labels: getLineLabels(data),
+						datasets: getLineData(data, chartik.dataset.target)
+					},
+					options: {
+						title: {
+							display: true,
+							text: chartik.dataset.name,
+							fontSize: 16
+						},
+						legend: {
+							display: false
+						}
+					}
+				}
+			}
+
+			function getLineLabels(data) {
+				if (data.length == 0) {
+					return []
+				}
+
+				return data[0].data
+						.map(it => it.date)
+			}
+
+			function getLineData(data, parameter) {
+				let result = []
+
+				for (let each of data) {
+					if (devices[each.device] == true) {
+						result.push({
+							data: each.data.map(that => that[parameter]),
+							borderColor: getColor(each.device),
+							// backgroundColor: 'transparent',
+							fill: false,
+							label: 'Device #' + each.device
+						})
+					}
+				}
+
+				return result
+			}
+
+			function createLineCharts(data) {
+				while (lineCharts.length > 0) {
+					let chart = lineCharts.pop()
+					chart.destroy()
+				}
+
+				for (let each of lineChartiks) {
+					lineCharts.push(new Chart(
+						each.getContext('2d'),
+						getLineOptions(each, data)
+					))
+				}
+			}
+
+			function updateLineCharts(data) {
+				for (let it = 0; it < lineChartiks.length; it++) {
+					let newOptions = getLineOptions(lineChartiks[it], data)
+					lineCharts[it].data = newOptions.data
+					lineCharts[it].update()
+				}
+			}
+		</script>
+
+		<script>
+			const barGraphs = document.getElementById('bar-graphs')
+			const barChartiks = barGraphs.getElementsByClassName('chartik')
+
+			let barCharts = []
+
+			function getBarOptions(chartik, data) {
+				return {
+					type: 'bar',
+					data: {
+						labels: getBarLabels(data, chartik.dataset.target),
+						datasets: getBarData(data, chartik.dataset.target)
+					},
+					options: {
+						title: {
+							display: true,
+							text: chartik.dataset.name,
+							fontSize: 16
+						},
+						legend: {
+							display: false
+						}
+					}
+				}
+			}
+
+			function getBarLabels(data, parameter) {
+				return [parameter]
+			}
+
+			function getBarData(data, parameter) {
+				let result = []
+
+				for (let each of data) {
+					if (devices[each.device]) {
+						if (each.data.length != 0) {
+							result.push({
+								data: [each.data[each.data.length - 1][parameter]],
+								backgroundColor: getColor(each.device),
+								label: 'Device #' + each.device
+							})
+						}
+					}
+				}
+
+				return result
+			}
+
+			function createBarCharts(data) {
+				while (barCharts.length > 0) {
+					let chart = barCharts.pop()
+					chart.destroy()
+				}
+
+				for (let each of barChartiks) {
+					barCharts.push(new Chart(
+						each.getContext('2d'),
+						getBarOptions(each, data)
+					))
+				}
+			}
+
+			function updateBarCharts(data) {
+				for (let it = 0; it < barChartiks.length; it++) {
+					let newOptions = getBarOptions(barChartiks[it], data)
+					barCharts[it].data = newOptions.data
+					barCharts[it].update()
+				}
+			}
+		</script>
+
+		<script>
+			const table = document.getElementById('tables').querySelector('table')
+			const tbody = table.querySelector('tbody')
+
+			function createTable(data) {
+				tbody.innerHTML = ''
+
+				for (let each of data) {
+					if (each.data.length > 0) {
+						let value = `
+							<td>${'Device #' + each.device}</td>
+							<td>${each.data[each.data.length - 1]['temp']}</td>
+							<td>${each.data[each.data.length - 1]['vibration']}</td>
+							<td>${each.data[each.data.length - 1]['power']}</td>
+							<td>${each.data[each.data.length - 1]['load']}</td>
+							<td>${each.data[each.data.length - 1]['time']}</td>
+						`
+
+						let row = document.createElement('tr')
+						row.innerHTML = value
+						tbody.appendChild(row)
+					}
+				}
+			}
+		</script>
+
+		<script>
+			let cachedData = null
+
+			function updateCharts() {
+				updateLineCharts(cachedData)
+				updateBarCharts(cachedData)
+			}
+
+			function configure(data) {
+				console.log('Configuring data...')
+				console.log(data)
+
+				cachedData = data
+				configureDevicesButtons(data)
+				createLineCharts(data)
+				createBarCharts(data)
+				createTable(data)
+			}
+
+			function query(startDate, endDate, parameters) {
+				return fetch('/telemetry/get_data/', {
+					method: 'POST',
+					headers: {
+						'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1]
+					},
+					body: JSON.stringify({
+						'start_date': startDate,
+						'end_date': endDate,
+						'params': parameters
+					})
+				})
+				.then(it => {
+					if (it.ok) {
+						return it.json()
+					}
+
+					throw new Error('Something went wrong')
+				})
+				.catch(it => alert('Error: ' + it))
+			}
+
+			query('2020-02-14', '2020-02-15', ['temp', 'vibration', 'power', 'load', 'time'])
+			.then(it => configure(it.data))
+		</script>
+
+		<script>
+			const updateRangeButton = document.getElementById('update-range')
+			const startDateField = document.getElementById('start-date')
+			const endDateField = document.getElementById('end-date')
+
+			updateRangeButton.addEventListener('click', e => {
+				if (!startDateField.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+					alert('Некорректный формат начальной даты')
+					return
+				}
+
+				if (!endDateField.value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+					alert('Некорректный формат конечной даты')
+					return
+				}
+
+				query(startDateField.value, endDateField.value, ['temp', 'vibration', 'power', 'load', 'time'])
+				.then(it => configure(it.data))
+			})
+		</script>
+    </body>
+</html>

@@ -20,18 +20,19 @@ from allauth.account import views as auth_views
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
-from main import views
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('telemetry/', include('telemetry.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^webpush/', include('webpush.urls')),
-    url(r'^admin/', admin.site.urls),
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'), name="account_login"),
-    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'), name="account_logout"),
-    path('accounts/signup/', auth_views.SignupView.as_view(template_name='account/signup.html'), name="account_signup"),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='account/login.html'),
+         name="account_login"),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='account/logout.html'),
+         name="account_logout"),
+    path('accounts/signup/', auth_views.SignupView.as_view(template_name='account/signup.html'),
+         name="account_signup"),
     path('accounts/password/change/', auth_views.PasswordChangeView.as_view(template_name=
                                                                             'account/password_change.html'),
          name="account_change_password"),
@@ -51,8 +52,7 @@ urlpatterns = [
     path('accounts/password/reset/key/done/',
          auth_views.PasswordResetFromKeyDoneView.as_view(template_name='account/password_reset_from_key_done.html'),
          name="account_reset_password_from_key_done"),
-    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('sw.js', TemplateView.as_view(template_name='main/sw.js', content_type='application/x-javascript'))path('ckeditor/', include('ckeditor_uploader.urls')),
     path('djeym/', include('djeym.urls', namespace='djeym')),
     path('map/', views.mapi, name='mapi'),
 ] + static(
@@ -62,3 +62,4 @@ urlpatterns = [
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
+

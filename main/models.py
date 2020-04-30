@@ -43,6 +43,10 @@ class UserProfile(models.Model):
     exp = models.IntegerField(default=0)
     # Флаг, указывающий на заполненные дополнительные поля
     isFull = models.BooleanField(default=False)
+    avatar = models.ImageField('profile picture',
+                               upload_to=settings.BASE_DIR + settings.STATIC_ROOT + '/images/avatars/',
+                               null=True,
+                               default=settings.BASE_DIR + settings.STATIC_ROOT + '/images/avatars/default.png')
 
     def __str__(self):
         return "%s's profile" % self.user
