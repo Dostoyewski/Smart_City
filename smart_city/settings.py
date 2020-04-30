@@ -75,7 +75,6 @@ INSTALLED_APPS = [
     'colorful',
     'adminsortable',
     'djeym',
-    'yandex_maps',
     'map'
 ]
 
@@ -184,6 +183,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = "/static"
 mimetypes.add_type("application/javascript", STATIC_ROOT + "/js/.js", True)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # To send test messages.
 # 1. Notify administrator of a new custom marker.
