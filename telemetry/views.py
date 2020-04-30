@@ -10,6 +10,7 @@ import datetime
 from main.views import send_to_user
 from os import listdir
 from os.path import isfile, join
+from django.contrib.auth.decorators import login_required
 
 
 @csrf_exempt
@@ -134,6 +135,7 @@ def get_data(request):
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
 
 
+@login_required
 def data_all(request):
     """
     Render of page with graphics
@@ -143,6 +145,7 @@ def data_all(request):
     return render(request, 'telemetry/all.html')
 
 
+@login_required
 def data_critical(request):
     """
     This function will display critical errors in telemetry
@@ -180,6 +183,7 @@ def data_critical(request):
     return render(request, 'telemetry/critical.html', {'stats': all_data})
 
 
+@login_required
 def data_attention(request):
     """
     This function will display attention telemetry
