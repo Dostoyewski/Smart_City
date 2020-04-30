@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Document</title>
+  <title>Регистрация</title>
 
   <link rel="stylesheet" href="{% static 'css/common.css' %}" />
   <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
@@ -15,10 +15,10 @@
 
 
   {% load i18n %}
-  
+
 
   {% block content %}
-  
+
   <!--<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
   -->
 
@@ -38,12 +38,12 @@
               <form class="signup" id="signup_form" action="{% url 'account_signup' %}" method="POST">
                 {% csrf_token %}
                 <!--{{ form.as_p }}-->
-                
+
                 <div class="input-field">
                   <input type="email" id="id_email" name="email" tabindex="1" required>
                   <label for="email">Email</label>
                 </div>
-                
+
                 <div class="input-field">
                   <input type="text" id="id_username" name="username" tabindex="2" minlength="3" maxlength="20"  required>
                   <label for="login">Имя пользователя</label>
@@ -59,7 +59,7 @@
                   <label for="password">Пароль (ещё раз)</label>
                 </div>
 
-                
+
                 <div class="section">
                   <button
                     class="btn-large waves-effect waves-light"
@@ -76,21 +76,21 @@
 
             <div class="flex-toolbar section">
 
-              
-              <div class="flow-text">Вы уже зарегистрированы?</div>
-              
 
-              
+              <div class="flow-text">Вы уже зарегистрированы?</div>
+
+
+
               <a
                 href="/accounts/login"
                 class="btn-large waves-effect waves-light"
                 type="submit">{% trans "Войти" %}
             </a>
-              
-            </div>
-              
 
-            
+            </div>
+
+
+
           </div>
         </div>
       </div>

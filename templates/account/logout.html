@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Document</title>
+  <title>А может не надо?</title>
 
   <link rel="stylesheet" href="{% static 'css/common.css' %}" />
   <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
@@ -13,12 +13,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
 
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/kitty.ico' %}"/>
 
   {% load i18n %}
   {% block content %}
 </head>
 
-<body>  
+<body>
   <div class="screen-height-filler valign-wrapper container demo-1 full-screen">
     <div id="large-header" class="large-header outer">
       <canvas id="demo-canvas"></canvas>
@@ -28,18 +29,18 @@
 
           <div class="divider"></div>
 
-          
+
 
           <!--<div class="divider"></div>-->
 
           <div class="section center">
             <form method="post" action="{% url 'account_logout' %}">
               {% csrf_token %}
-              
+
               <div class="text_for_user">Вы уверены, что хотите выйти?</div>
-              
+
               <div>
-                <button 
+                <button
                   class="btn-large waves-effect waves-light"
                   type="submit">{% trans 'Sign Out' %}
                 </button>
