@@ -109,7 +109,7 @@
 .inner{
     position: absolute;
     height: 68%;
-    width: 66% !important;
+    width: 66%;
     top: 50%;
     left: 49% !important;
     transform: translate(-50%, -50%);
