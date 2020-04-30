@@ -131,7 +131,7 @@ def get_data(request):
                 params.append(z)
             all_data.append({"device": device.idDevice,
                              "data": params})
-        return JsonResponse(status=200, data={"data": json.dumps(all_data)}, safe=False)
+        return JsonResponse(status=200, data={"data": all_data}, safe=False)
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
 
@@ -181,7 +181,7 @@ def data_critical(request):
         send_to_user("TELEMETRY", "Все системы в норме", request.user)
     else:
         send_to_user("TELEMETRY", "Обнаружены критические повреждения", request.user)
-    return render(request, "telemetry/critical.html", {"stats": all_data})
+    return render(request, "telemetry/critical.html", {"stats": json.dumps(all_data)})
 
 
 @login_required
@@ -220,7 +220,7 @@ def data_attention(request):
     else:
         send_to_user("TELEMETRY", "Проверьте параметры устройств: некоторые приближаются к критическим",
                      request.user)
-    return render(request, "telemetry/danger.html", {"stats": all_data})
+    return render(request, "telemetry/danger.html", {"stats": json.dumps(all_data)})
 
 
 def check_parameters(flag, data):
