@@ -2,6 +2,7 @@ import pandas as pd
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPRegressor
 
 
 def get_datetime(data):
@@ -56,10 +57,19 @@ def load_file(filename='February.dat'):
 if __name__ == "__main__":
     data = load_file()
     fig, ax = plt.subplots()
-    ax.plot(data[1]['time'], data[7]['load'])
+    ax.plot(data[3]['time'], data[3]['temp'])
     ax.set(xlabel='x', ylabel='y',
            title='Ships plot')
     ax.grid()
-
+    clf = MLPRegressor(alpha=0.001, hidden_layer_sizes=(10,), max_iter=50000,
+                       activation='logistic', verbose='True', learning_rate='adaptive')
+    n = len(data[3]['time'])
+    X = np.reshape(data[3]['time'], [n, 1])
+    Y = np.reshape(data[3]['temp'], [n, ])
+    a = clf.fit(X, Y)
+    x_ = np.linspace(data[3]['time'][0], data[3]['time'][1], 500)
+    pred_x = np.reshape(x_, [500, 1])  # [160, ] -> [160, 1]
+    pred_y = clf.predict(pred_x)  # predict network output given x_
+    plt.plot(pred_x, pred_y, '-')
     plt.show()
 

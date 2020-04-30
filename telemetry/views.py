@@ -111,8 +111,8 @@ def get_data(request):
             if 'start_date' not in request_data or 'end_date' not in request_data:
                 data = StatData.objects.filter(device=device)
             else:
-                data = StatData.objects.filter(date__range=[request_data['start_date'],
-                                                            request_data['end_date']])
+                data = StatData.objects.filter(device=device, date__range=[request_data['start_date'],
+                                                                           request_data['end_date']])
             params = []
             for obj in data:
                 z = {'date': str(obj.date).split(sep='+')[0]}
