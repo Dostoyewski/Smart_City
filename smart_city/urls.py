@@ -57,7 +57,8 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('djeym/', include('djeym.urls', namespace='djeym')),
     path('map/', mapi, name='mapi'),
-    path('parsing/', include('parsing.urls'))
+    path('parsing/', include('parsing.urls')),
+    path('', include('core.urls')),
 ] + static(
     settings.STATIC_URL,
     document_root=settings.STATIC_ROOT

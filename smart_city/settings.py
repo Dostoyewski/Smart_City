@@ -76,7 +76,10 @@ INSTALLED_APPS = [
     'adminsortable',
     'djeym',
     'map',
-    'parsing'
+    'parsing',
+    'core',
+    'rest_framework',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -256,3 +259,42 @@ DJEYM_YMAPS_API_KEY_FOR_ENTERPRISE = False
 # Map download mode. Default = 'release'
 # (Режим загрузки карт.)
 # DJEYM_YMAPS_DOWNLOAD_MODE = 'debug'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+
+MESSAGES_TO_LOAD = 15
+
+# In settings.py
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "core.routing.channel_routing",
+    },
+}
+# Could be changed to the config below to scale:
+# "BACKEND": "asgi_redis.RedisChannelLayer",
+# "CONFIG": {
+#     "hosts": [("localhost", 6379)],
+# },
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+ASGI_APPLICATION = 'Smart_City.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('localhost', 6379)],
+        },
+    },
+}
