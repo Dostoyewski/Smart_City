@@ -17,3 +17,4 @@ class ChangeForm(forms.Form):
     age = forms.DateField(label='Возраст')
     position = forms.CharField(max_length=50, label='Должность')
     exp = forms.IntegerField(label='Стаж')
+    message = forms.CharField(label='Сообщение')
