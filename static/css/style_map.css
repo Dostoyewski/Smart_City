@@ -1,0 +1,26 @@
+table{
+    visibility: hidden;
+}
+
+.djeym-button {
+    font-family: Roboto, sans-serif !important;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.djeym-button-bar {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.ymaps-2-1-76-b-cluster-tabs__section .ymaps-2-1-76-b-cluster-tabs__section_type_content{
+    visibility: hidden !important;
+}
