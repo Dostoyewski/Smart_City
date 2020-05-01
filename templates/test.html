@@ -8,6 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
+  <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/style_map.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- START VENDORS CSS -->
   <!-- Roboto Font:
         Usage (css):
@@ -32,46 +37,58 @@
   <!-- START MAP -->
   <!-- Buttons are optional.
        (Кнопки не являются обязательными.) -->
-  <style type="text/css">
-    table{
-      visibility: hidden;
-    }
+    <div class="hat white-text row">
+    <div class="col m3 s12 center">
+      <a href="/">
+        <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+      </a>
+    </div>
 
-    .djeym-button {
-      font-family: Roboto, sans-serif !important;
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 10px 24px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
-    .djeym-button-bar {
-      display: none;
-      margin-bottom: 10px;
-    }
-  </style>
+    <div class="col m4 offset-m1 s12 valign-wrapper">
+      <nav class="grey lighten-3 hat-search">
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" tabindex="1">
+              <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+      <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+      <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+    </div>
+
+    <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+      <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+      <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+    </div>
+  </div>
+
   <div class="djeym-button-bar">
     <button id="djeym-open-panel" type="button" class="djeym-button">
       <span class="mdi mdi-arrow-expand-right"></span>
       Open Panel
     </button>
-    <button id="djeym-add-marker" type="button" class="djeym-button">
-      <span class="mdi mdi-map-marker-plus"></span>
-      Add Marker
-    </button>
+    
   </div>
   <div id="djeym-app" class="djeym"></div>
+
   <!-- END MAP -->
+
+  <br>
+  <div class="hat white-text row" style="margin-bottom: 0em;">
+		<div class="container m3 s12 center" style="padding: 1em;">
+			<h6>© 2020 NTI THEORMECH_RELEASE</h6>
+		</div>
+	</div>
 
   <!-- START VENDORS JS -->
   <script type="text/javascript" src="{% static 'djeym/js/jquery.min.js' %}"></script>
   <script src="{% static 'djeym/js/jquery-regex.min.js' %}"></script>
-  ...
   {% djeym_yandex_map slug='test' lang=request.LANGUAGE_CODE %}
   <!-- END VENDORS JS -->
 </body>

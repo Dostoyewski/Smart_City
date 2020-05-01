@@ -1,11 +1,173 @@
-{% extends 'base.html' %} {% block content %}
-<form action='/accounts/changeform/' method="post">
-{% csrf_token %}
-	<div class="field-title">
-	{{ form.as_p }}
-	<button class="btn waves-effect waves-light  purple darken-4" type="submit" >OK</button><br>
-	'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных» 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>changeform</title>
+
+	
+	<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/style_account.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/style_changeform.css' %}" />
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	
+</head>
+<body>
+	<div class="hat white-text row">
+		<div class="col m3 s12 center">
+			<a href="/">
+				<img src="{% static 'images/logo.png' %}" alt="" class="logo">
+			</a>
+		</div>
+
+		<div class="col m4 offset-m1 s12 valign-wrapper">
+			<nav class="grey lighten-3 hat-search">
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field">
+							<input id="search" type="search" tabindex="1">
+							<label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+						</div>
+					</form>
+				</div>
+			</nav>
+		</div>
+
+		<div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
+
+		<div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+			<a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+		</div>
 	</div>
-    
-</form>
-{% endblock content %}
+
+	{% block content %}
+
+	<!-- -->
+	<form action='/accounts/changeform/' method="post">
+	{% csrf_token %} 
+		<div class="field-title">
+		{{ form.as_p }}
+		<button class="btn waves-effect waves-light  purple darken-4" type="submit" >OK</button><br>
+		'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных» 
+		</div>
+		
+	</form>
+	-->
+	
+
+	<div class="col s12 m12 l6">
+		<div class="card-panel">
+		  	<h4 class="header2">Резюме</h4>
+		  	<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12 m4">
+							<input type="text" name="vorname" tabindex="1" placeholder="Фамилия" id="id_vorname" maxlength="25" required>
+							<label for="first_name">Фамилия</label>
+						</div>
+						<div class="input-field col s12 m4">
+							<input type="text" name="name" tabindex="2" placeholder="Имя" id="id_name" maxlength="25" required>
+							<label for="first_name">Имя</label>
+						</div>
+						<div class="input-field col s12 m4">
+							<input type="text" name="fathername" tabindex="3" placeholder="Отчество" id="id_fathername" maxlength="25" required>
+							<label for="first_name">Отчество</label>
+						</div>							
+					</div>					
+					<div class="row">
+						<div class="input-field col s12 m4">
+							<input id="id_age" name="age" tabindex="4" type="text" class="col s4 datepicker" placeholder="Дата рождения">
+							<label for="first_name">Дата рождения:</label>
+						</div>
+						<div class="col s12 m4">
+							<label for="first_name">Пол:</label>
+							<!--<form action="#" id="id_gender">-->
+								<p>
+								  <label for="id_gender">
+									<input value="0" type="radio" name="gender" id="id_gender" tabindex="5" checked/>
+									<span>Мужской</span>
+								  </label>
+								</p>
+								<p>
+								  <label for="id_gender">
+									<input name="gender" value="1" tabindex="6"  id="id_gender" type="radio" />
+									<span>Женский</span>
+								  </label>
+								</p>							
+							<!--</form>-->
+						</div>	
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input placeholder="Должность" id="id_position" type="text" name="position" tabindex="7"  maxlength="25" required>
+							<label for="email">Должность (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input placeholder="Должность" id="id_exp" type="number" name="exp" tabindex="8"  maxlength="25" required>
+							<label for="email">Стаж (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea placeholder="Статус" type="text" id="id_message" name="message" tabindex="9" class="materialize-textarea"></textarea>
+							<label for="id_message">Статус</label>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6">
+								<section style="margin-left: 2em;">
+								'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных»							
+								</section>
+							</div>
+							<div class="input-field col s12 m6">
+									<button class="btn-large waves-effect waves-light right" type="submit" name="action">Отправить
+										<i class="mdi-content-send right"></i>
+									</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% endblock content %}
+
+
+	<div class="hat white-text row" style="margin-bottom: 0em;">
+		<div class="container m3 s12 center" style="padding: 1em;">
+			<h6>© 2020 NTI THEORMECH_RELEASE</h6>
+		</div>
+	</div>
+
+	<script src="{% static 'js/materialize.min.js' %}"></script>
+	<script src="{% static '/js/registerSw.js' %}"></script>
+
+	<script>
+		let allErrors = '{{ form.errors.as_json }}'
+		let data = JSON.parse(render(allErrors))
+  
+		let errorTab = document.getElementById('errorTab')
+		let errorMessage = errorTab.querySelector('p')
+  
+		if (data['__all__'].length > 0) {
+		  errorMessage.innerHTML = data['__all__'][0]['message']
+		  errorTab.classList.remove('hide')
+		}
+  
+	</script>	
+	
+	
+</body>
+</html>
+
