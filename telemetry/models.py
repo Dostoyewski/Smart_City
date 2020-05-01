@@ -26,6 +26,9 @@ class Device(models.Model):
 
 
 class StatData(models.Model):
+    """
+    Data from Device model
+    """
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     date = models.DateTimeField(unique=True, default=datetime.datetime(2000, 1, 1, 10, 10, 10))
     temp = models.FloatField(default=30)
@@ -45,6 +48,9 @@ class Approx(models.Model):
 
 
 class SummaryApprox(models.Model):
+    """
+    Approximation model
+    """
     bench = models.CharField(default='bench', max_length=20)
     vibration = models.FloatField(default=0)
     vibrationp = models.FloatField(default=0)

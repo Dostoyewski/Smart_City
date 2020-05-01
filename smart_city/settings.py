@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     'colorful',
     'adminsortable',
     'djeym',
-    'map'
+    'map',
+    'parsing'
 ]
 
 MIDDLEWARE = [
