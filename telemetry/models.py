@@ -41,6 +41,7 @@ class Approx(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE, blank=True)
     param = models.CharField(max_length=20)
     cur_value = models.FloatField(default=0)
+    time_out = models.IntegerField(default=0)
 
 
 class SummaryApprox(models.Model):
