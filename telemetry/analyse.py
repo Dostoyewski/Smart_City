@@ -18,10 +18,10 @@ def get_datetime(data):
     return date
 
 
-def load_file(filenames=['February.dat']):
+def load_file(filenames=['February.dat'], STATIC_ROOT=''):
     df = []
     for filename in filenames:
-        df.append(pd.read_table("C:/Users/Федор/Documents/GIT/Smart_City/static/datafiles/" + filename, sep='\t',
+        df.append(pd.read_table("." + STATIC_ROOT + "datafiles/" + filename, sep='\t',
                                 usecols=['Machine ID', 'Date',
                                          'Temperature', 'Vibration',
                                          'Power', 'System load',

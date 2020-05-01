@@ -288,7 +288,7 @@ def make_correlation(request):
         path = "." + settings.STATIC_ROOT + "/datafiles/"
         files = [f for f in listdir(path) if isfile(join(path, f))]
         files = [file for file in files if file[-3:] == "dat"]
-        data = load_file(files)
+        data = load_file(files, settings.STATIC_ROOT)
         params = ["vibration", "load", "temp"]
         ln = len(data)
         summ = []
