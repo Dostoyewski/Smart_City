@@ -53,7 +53,7 @@
 					  <div class="col s12 m7">
 						<div class="display-flex media ">
 							<div class="col s12 m3">
-								<img src="{% static 'images/avatars/default.png' %}" alt="users view avatar"
+								<img src="{{avatar}}" alt="users view avatar"
 								height="80px" width="80px">
 							</div>
 							<div class="col s12 m9">
@@ -62,7 +62,7 @@
 									  <span class="users-view-name">{{name}}</span>
 									  <span class="grey-text">@</span>
 									  <span class="users-view-username grey-text">{{user.username}}</span>
-									  <blockquote class="blue" >
+									  <blockquote  >
 										{{message}}
 									  </blockquote>
 									</h6>
@@ -73,7 +73,7 @@
 					  <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
 						<a href="app-email.html" class="btn-large btn-light-indigo right-align waves-light waves-effect"><i class="material-icons">mail_outline</i></a>
 						{% if not isFull %}
-						<a href="/accounts/changeform" class="btn-small indigo">Обновить данные</a>
+						<a href="/accounts/changeform" class="btn-large indigo">Обновить данные</a>
 						{% endif %}
 					  </div>
 					</div>
@@ -120,12 +120,8 @@
 								</tr>
 								<tr>
 									<td>Возраст</td>
-									<td class="users-view-name">{{age}}</td>
-								</tr>
-								<tr>
-									<td>Стек технологий</td>
-									<td class="users-view-name">Html/Css & React</td>
-								</tr>
+									<td class="users-view-age">{{age}}</td>
+								</tr>								
 
 
 							</tbody>

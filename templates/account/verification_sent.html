@@ -9,23 +9,36 @@
 
     <link rel="stylesheet" href="{% static 'css/common.css' %}" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
 
     {% load i18n %}    
     {% block content %} 
 </head>
 <body>    
-    <div class="screen-height-filler valign-wrapper">
-        <div class="container row center">
-            <div class="col m8 offset-m2 s12 white popup">
-                <h2>Подтвердите ваш e-mail</h2>
-                <div class="divider"></div>
-                
-                <div class="section center">
-                    <p class="text_for_user">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+    <div class="screen-height-filler valign-wrapper container demo-1 full-screen">
+        <div id="large-header" class="large-header outer">
+            <canvas id="demo-canvas"></canvas>
+            <div class="container row center inner" style="top: 50%;">
+                <div class="col m8 offset-m2 s12 white popup">
+                    <h2>Подтвердите ваш e-mail</h2>
+                    <div class="divider"></div>
+                    
+                    <div class="section center">
+                        <p class="text_for_user">{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+                    </div>
+                    {% endblock %}
                 </div>
-                {% endblock %}
             </div>
         </div>
     </div>
+
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/TweenLite.min.js' %}"></script>
+    <script src="{% static 'js/EasePack.min.js' %}"></script>
+    <script src="{% static 'js/rAF.js' %}"></script>
+    <script src="{% static 'js/demo-1.js' %}"></script>
 </body>
 </html>

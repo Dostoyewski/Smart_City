@@ -4,7 +4,7 @@ table{
 
 .djeym-button {
     font-family: Roboto, sans-serif !important;
-    background-color: #4CAF50;
+    background-color: #000000;
     border: none;
     color: white;
     padding: 10px 24px;
@@ -21,6 +21,15 @@ table{
     margin-bottom: 10px;
 }
 
-.ymaps-2-1-76-b-cluster-tabs__section .ymaps-2-1-76-b-cluster-tabs__section_type_content{
+.ymaps-2-1-76-b-cluster-tabs__section{
     visibility: hidden !important;
+}
+
+.ymaps-2-1-76-b-cluster-tabs__section_type_content{
+    visibility: hidden !important;
+}
+
+.djeym-pos-relative {
+    font-family: sans-serif;
+    font-size: 1.5em;
 }
