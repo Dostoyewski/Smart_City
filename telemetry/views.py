@@ -314,7 +314,7 @@ def display_params(request):
     data = []
     func = Approx.objects.all()
     for obj in func:
-        data.append({"device": obj.device,
+        data.append({"device": obj.device.idDevice,
                      "param": obj.param,
                      "piers": obj.piers,
                      "array": obj.array})
