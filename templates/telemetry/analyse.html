@@ -1,10 +1,140 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>АНАЛИЗ</title>
-</head>
-<body>
-{{ approx }}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Анализ</title>
+
+        <link rel="stylesheet" href="{% static 'css/common.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style_analyse.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+        <!-- <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}" /> -->
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="hat white-text row">
+            <div class="col m3 s12 center">
+                <a href="/">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+                </a>
+            </div>
+
+            <div class="col m4 offset-m1 s12 valign-wrapper">
+                <nav class="grey lighten-3 hat-search">
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" tabindex="1">
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+
+            <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+                <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+            </div>
+        </div>
+
+        <div class="container chartik-popup">
+            <div class="section center">
+                <h3>Критическое состояние</h3>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+                <table id="main-table" class="col s12 highlight centered">
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Temp</th>
+                            <th>Vibration</th>
+                            <th>Power</th>
+                            <th>Load</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- <script src="{% static 'js/Chart.bundle.min.js' %}"></script> -->
+        <script src="{% static 'js/materialize.min.js' %}"></script>
+
+        <script>
+            function render(html) {
+                let element = document.createElement('div')
+                element.innerHTML = html
+                return element.textContent
+            }
+
+            const stats = render('{{ approx }}')
+            console.log(stats)
+            const data = JSON.parse(stats)
+            console.log(data)
+
+            const mainTable = document.getElementById('main-table')
+            const tbody = mainTable.querySelector('tbody')
+
+            // for (let each of data) {
+            //     if (each.data.length > 0) {
+            //         let value = `
+            //             <td>${'Device #' + each.device}</td>
+            //             <td>${highlight(each.data[each.data.length - 1]['temp'] || 'OK')}</td>
+            //             <td>${highlight(each.data[each.data.length - 1]['vibration'] || 'OK')}</td>
+            //             <td>${highlight(each.data[each.data.length - 1]['power'] || 'OK')}</td>
+            //             <td>${highlight(each.data[each.data.length - 1]['load'] || 'OK')}</td>
+            //             <td>${highlight(each.data[each.data.length - 1]['time'] || 'OK')}</td>
+            //         `
+
+            //         let row = document.createElement('tr')
+            //         row.innerHTML = value
+            //         tbody.appendChild(row)
+            //     }
+            // }
+
+            function configure(data) {
+                console.log(data)
+            }
+        </script>
+
+        <script>
+            // fetch('/telemetry/make_corr/', {
+            //     method: 'POST',
+            //     headers: {
+            //         'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
+            //         'content-type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         'update': 'ok'
+            //     })
+            // })
+            // .then(it => {
+            //     if (it.ok) {
+            //         return it.json()
+            //     }
+
+            //     throw new Error('Something went wrong')
+            // })
+            // .catch(it => alert('Error: ' + it))
+			// .then(it => configure(it.data))
+        </script>
+    </body>
 </html>

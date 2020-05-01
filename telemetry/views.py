@@ -296,7 +296,7 @@ def make_correlation(request):
             for param in params:
                 p, corr = get_fit(data, n, param)
                 print("deg:", len(p.coef))
-                Approx.objects.create(array=str(p.coef), piers=corr,
+                Approx.objects.create(array=str(list(p.coef)), piers=corr,
                                       device=Device.objects.get(idDevice=n+1),
                                       param=param)
 
