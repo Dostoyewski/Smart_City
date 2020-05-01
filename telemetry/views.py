@@ -22,7 +22,7 @@ def load_data(filename):
     :return: True, if OK, else False
     """
     try:
-        df = pd.read_table(settings.BASE_DIR + settings.STATIC_ROOT + "/datafiles/" + filename, sep="\t",
+        df = pd.read_table("." + settings.STATIC_ROOT + "/datafiles/" + filename, sep="\t",
                            usecols=["Machine ID", "Date",
                                     "Temperature", "Vibration",
                                     "Power", "System load",
@@ -70,7 +70,7 @@ def update_db(request):
 
         if "reload" not in request_data:
             return JsonResponse(status=400, data={"message": "Invalid data format"})
-        path = settings.BASE_DIR + settings.STATIC_ROOT + "/datafiles/"
+        path = "." + settings.STATIC_ROOT + "/datafiles/"
         files = [f for f in listdir(path) if isfile(join(path, f))]
         for file in files:
             if file[-3:] == "dat":
@@ -285,12 +285,13 @@ def make_correlation(request):
         if "update" not in request_data:
             return JsonResponse(status=400, data={"message": "Invalid data format"})
         Approx.objects.all().delete()
-        path = settings.BASE_DIR + settings.STATIC_ROOT + "/datafiles/"
+        path = "." + settings.STATIC_ROOT + "/datafiles/"
         files = [f for f in listdir(path) if isfile(join(path, f))]
         files = [file for file in files if file[-3:] == "dat"]
         data = load_file(files)
         params = ["vibration", "load", "temp"]
         ln = len(data)
+        summ = []
         for n in range(ln):
             for param in params:
                 p, corr = get_fit(data, n, param)
@@ -298,6 +299,7 @@ def make_correlation(request):
                 Approx.objects.create(array=str(p.coef), piers=corr,
                                       device=Device.objects.get(idDevice=n+1),
                                       param=param)
+
         return JsonResponse(status=200, data={"status": "updated"})
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})

@@ -46,9 +46,9 @@ class UserProfile(models.Model):
     # Флаг, указывающий на заполненные дополнительные поля
     isFull = models.BooleanField(default=False)
     avatar = models.ImageField('profile picture',
-                               upload_to=settings.BASE_DIR + settings.STATIC_ROOT + '/images/avatars/',
+                               upload_to="." + settings.STATIC_ROOT + '/images/avatars/',
                                null=True,
-                               default=settings.BASE_DIR + settings.STATIC_ROOT + '/images/avatars/default.png')
+                               default="." + settings.STATIC_ROOT + '/images/avatars/default.png')
 
     def __str__(self):
         return "%s's profile" % self.user
@@ -68,7 +68,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         profile, created = UserProfile.objects.get_or_create(user=instance)
         profile.user_url = slugify(profile.user.email+profile.user.first_name)
-        file = pd.read_excel(settings.BASE_DIR + settings.STATIC_ROOT + '/datafiles/staff_info.xlsx')
+        file = pd.read_excel("." + settings.STATIC_ROOT + '/datafiles/staff_info.xlsx')
         if profile.user.email in file['Почта'].values:
             ind,  = np.where(file['Почта'].values == profile.user.email)
             ind = ind[0]
