@@ -27,5 +27,5 @@ class Anketa(models.Model):
     fathername = models.CharField(max_length=50, blank=True)
     gender = models.IntegerField(choices=GENDER, default=0)
     age = models.IntegerField(default=33)
-    urlVK = models.CharField(default='123123')
+    urlVK = models.CharField(default='123123', max_length=50)
     objects = AnketaManager()
