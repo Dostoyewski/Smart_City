@@ -51,7 +51,7 @@
 
 	{% block content %}
 
-	<!-- -->
+	<!--
 	<form action='/accounts/changeform/' method="post">
 	{% csrf_token %} 
 		<div class="field-title">
@@ -63,83 +63,85 @@
 	</form>
 	-->
 	
-
-	<div class="col s12 m12 l6">
-		<div class="card-panel">
-		  	<h4 class="header2">Резюме</h4>
-		  	<div class="row">
-				<form class="col s12">
-					<div class="row">
-						<div class="input-field col s12 m4">
-							<input type="text" name="vorname" tabindex="1" placeholder="Фамилия" id="id_vorname" maxlength="25" required>
-							<label for="first_name">Фамилия</label>
-						</div>
-						<div class="input-field col s12 m4">
-							<input type="text" name="name" tabindex="2" placeholder="Имя" id="id_name" maxlength="25" required>
-							<label for="first_name">Имя</label>
-						</div>
-						<div class="input-field col s12 m4">
-							<input type="text" name="fathername" tabindex="3" placeholder="Отчество" id="id_fathername" maxlength="25" required>
-							<label for="first_name">Отчество</label>
-						</div>							
-					</div>					
-					<div class="row">
-						<div class="input-field col s12 m4">
-							<input id="id_age" name="age" tabindex="4" type="text" class="col s4 datepicker" placeholder="Дата рождения">
-							<label for="first_name">Дата рождения:</label>
-						</div>
-						<div class="col s12 m4">
-							<label for="first_name">Пол:</label>
-							<!--<form action="#" id="id_gender">-->
-								<p>
-								  <label for="id_gender">
-									<input value="0" type="radio" name="gender" id="id_gender" tabindex="5" checked/>
-									<span>Мужской</span>
-								  </label>
-								</p>
-								<p>
-								  <label for="id_gender">
-									<input name="gender" value="1" tabindex="6"  id="id_gender" type="radio" />
-									<span>Женский</span>
-								  </label>
-								</p>							
-							<!--</form>-->
-						</div>	
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input placeholder="Должность" id="id_position" type="text" name="position" tabindex="7"  maxlength="25" required>
-							<label for="email">Должность (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input placeholder="Должность" id="id_exp" type="number" name="exp" tabindex="8"  maxlength="25" required>
-							<label for="email">Стаж (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<textarea placeholder="Статус" type="text" id="id_message" name="message" tabindex="9" class="materialize-textarea"></textarea>
-							<label for="id_message">Статус</label>
+	{% csrf_token %} 
+	<form action='/accounts/changeform/' method="post">
+		<div class="col s12 m12 l6">
+			<div class="card-panel">
+				<h4 class="header2">Резюме</h4>
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<div class="input-field col s12 m4">
+								<input type="text" name="vorname" tabindex="1" placeholder="Фамилия" id="id_vorname" maxlength="50" required>
+								<label for="first_name">Фамилия</label>
+							</div>
+							<div class="input-field col s12 m4">
+								<input type="text" name="name" tabindex="2" placeholder="Имя" id="id_name" maxlength="50" required>
+								<label for="first_name">Имя</label>
+							</div>
+							<div class="input-field col s12 m4">
+								<input type="text" name="fathername" tabindex="3" placeholder="Отчество" id="id_fathername" maxlength="50" required>
+								<label for="first_name">Отчество</label>
+							</div>							
+						</div>					
+						<div class="row">
+							<div class="input-field col s12 m4">
+								<input id="id_age" name="age" tabindex="4" type="text" class="col s4 datepicker" placeholder="Дата рождения">
+								<label for="first_name">Дата рождения:</label>
+							</div>
+							<div class="col s12 m4">
+								<label for="first_name">Пол:</label>
+								<!--<form action="#" id="id_gender">-->
+									<p>
+									<label for="id_gender">
+										<input value="0" type="radio" name="gender" id="id_gender" tabindex="5" checked/>
+										<span>Мужской</span>
+									</label>
+									</p>
+									<p>
+									<label for="id_gender">
+										<input name="gender" value="1" tabindex="6"  id="id_gender" type="radio" />
+										<span>Женский</span>
+									</label>
+									</p>							
+								<!--</form>-->
+							</div>	
 						</div>
 						<div class="row">
-							<div class="input-field col s12 m6">
-								<section style="margin-left: 2em;">
-								'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных»							
-								</section>
-							</div>
-							<div class="input-field col s12 m6">
-									<button class="btn-large waves-effect waves-light right" type="submit" name="action">Отправить
-										<i class="mdi-content-send right"></i>
-									</button>
+							<div class="input-field col s12">
+								<input placeholder="Должность" id="id_position" type="text" name="position" tabindex="7"  maxlength="25" required>
+								<label for="email">Должность (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
 							</div>
 						</div>
-					</div>
-				</form>
+						<div class="row">
+							<div class="input-field col s12">
+								<input placeholder="Должность" id="id_exp" type="number" name="exp" tabindex="8"  maxlength="25" required>
+								<label for="email">Стаж (валидация должности и сверка со списками сотрудников будет произведена модератором)</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea placeholder="Статус" type="text" id="id_message" name="message" tabindex="9" class="materialize-textarea"></textarea>
+								<label for="id_message">Статус</label>
+							</div>
+							<div class="row">
+								<div class="input-field col s12 m6">
+									<section style="margin-left: 2em;">
+									'Нажимая кнопку 'OK' вы принимаете Согласие на обработку персональных данных в соответствие с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных»							
+									</section>
+								</div>
+								<div class="input-field col s12 m6">
+										<button class="btn-large waves-effect waves-light right" type="submit" name="action">Отправить
+											<i class="mdi-content-send right"></i>
+										</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 
 	{% endblock content %}
 
