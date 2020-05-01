@@ -14,6 +14,6 @@ class ParserForm(forms.Form):
     vorname = forms.CharField(max_length=50, label='Фамилия')
     fathername = forms.CharField(max_length=50, label='Отчество')
     gender = forms.ChoiceField(choices=GENDER, label='Пол')
-    age = forms.DateField(label='Возраст')
+    age = forms.IntegerField(label='Возраст')
     urlVK = forms.CharField(max_length=50, label='ссылка VK')
 

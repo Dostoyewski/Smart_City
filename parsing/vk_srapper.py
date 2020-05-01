@@ -16,6 +16,14 @@ def request(id, token):
     d1 = rq.get(pointer)
     return d1.json()['response'][0]
 
+
+def get_user_id(url, token):
+    pointer = "https://api.vk.com/method/users.get?user_ids=" + str(url) +\
+              "&access_token=" + token + "&v=5.52"
+    gr = rq.get(pointer)
+    print(gr.json())
+    return gr.json()['response'][0]['id']
+
 # Функция парсит словарь полученный из функции request
 def parse_data(data):
     PERSON = {'ID': data['id'], 'first_name': data['first_name'], 'last_name': str(data['last_name']), 'sex':data['sex']}
@@ -68,7 +76,7 @@ def load_photo(url):
     return img
 
 # Фуекция создает список из id пользователей группы с groupid
-def get_ids_group(groupid, token):
+def get_ids_group(groupid, token=tok):
     pointer = "https://api.vk.com/method/groups.getMembers?group_id=" + str(groupid) + "&access_token=" + token + "&v=5.52"
     gr = rq.get(pointer)
     print(gr.json())
@@ -77,11 +85,11 @@ def get_ids_group(groupid, token):
     return users_ids
 
 # Функция создает из данных о пользователи анкету в формате PDF
-def make_pdf_profile(data):
-    fn = 'ID_' + str(data['ID']) + '.pdf'
-    c = canvas.Canvas(fn) # МОжешь прописать свой каталог
+def make_pdf_profile(data, path):
+    fn = '/ID_' + str(data['ID']) + '.pdf'
+    c = canvas.Canvas('.' + path + fn) # МОжешь прописать свой каталог
     
-    pdfmetrics.registerFont(TTFont('DJVU', 'DejaVuSansCondensed.ttf')) #Пропиши свой путь к каталогу
+    pdfmetrics.registerFont(TTFont('DJVU', '.' + path + '/DejaVuSansCondensed.ttf')) #Пропиши свой путь к каталогу
     c.setFont('DJVU', 8)
     if 'photo' in data:
         img = load_photo(data['photo'])
@@ -145,33 +153,38 @@ def make_csv(data):
     print(d.head(10))
     return d
 
-#ПРИМЕР :
-ids = get_ids_group("theormech", tok) # Получаем Id-пользователей сообщества ВШТМ
-print(ids)
 
-DATASET = [] # Данные пользователей
-PHOTOS = [] # Фото пользователей
-i = 0
+def get_user_data(urlVK, path=''):
+    #ПРИМЕР :
+    # ids = get_ids_group("theormech", tok) # Получаем Id-пользователей сообщества ВШТМ
+    # print(ids)
+    ids = [get_user_id(urlVK, tok)]
 
-for id in ids:
-    user = parse_data(request(id, tok)) # получаем данные пользователей
-    if 'photo' in user:
-        PHOTOS.append(load_photo(user['photo']))
-    else:
-        PHOTOS.append("NONE")
+    DATASET = [] # Данные пользователей
+    PHOTOS = [] # Фото пользователей
+    i = 0
 
-    DATASET.append(user) #Добавляем в сиписок
-    print(DATASET[i])
-    i += 1
-    if i >= 25: #Берем первые 25 а то долго грузится
-       break
+    for id in ids:
+        user = parse_data(request(id, tok)) # получаем данные пользователей
+        if 'photo' in user:
+            PHOTOS.append(load_photo(user['photo']))
+        else:
+            PHOTOS.append("NONE")
 
-make_csv(DATASET)
+        DATASET.append(user) #Добавляем в сиписок
+        print(DATASET[i])
+        i += 1
+        if i >= 25: #Берем первые 25 а то долго грузится
+           break
 
-for i in range(len(DATASET)):
-    make_pdf_profile(DATASET[i])
+    make_csv(DATASET)
 
+    for i in range(len(DATASET)):
+        make_pdf_profile(DATASET[i], path)
 
+if __name__ == "__main__":
+    get_user_id('megasnvrsk', tok)
+    get_user_data('megasnvrsk')
 
 
 
