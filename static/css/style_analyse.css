@@ -10,6 +10,35 @@
     border-radius: 4px;
     background-color: white;
     box-shadow: 0px 0px 10px #a8a8a8;
+
+    font-size: 1.3em;
+
+    cursor: pointer;
+}
+
+.server-popup .info {
+    content: "";
+
+    padding: 0 0.5em 0.5em 0.5em;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: calc(100% - 4em);
+
+    box-shadow: 0px 0px 10px #a8a8a8;
+    background-color: white;
+    border-radius: 4px;
+
+    z-index: 2;
+}
+
+.info > p {
+    padding: 0;
+    margin: 0;
 }
 
 .server-popups-board > .col {
