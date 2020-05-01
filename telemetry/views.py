@@ -296,7 +296,7 @@ def make_correlation(request):
                 p, corr = get_fit(data, n, param)
                 print("deg:", len(p.coef))
                 Approx.objects.create(array=str(p.coef), piers=corr,
-                                      device=Device.objects.get(idDevice=n),
+                                      device=Device.objects.get(idDevice=n+1),
                                       param=param)
         return JsonResponse(status=200, data={"status": "updated"})
     else:
@@ -316,4 +316,4 @@ def display_params(request):
                      "param": obj.param,
                      "piers": obj.piers,
                      "array": obj.array})
-    return render(request, 'telemetry/analyse.html', {'approx': data})
+    return render(request, 'telemetry/analyse.html', {'approx': json.dumps(data)})

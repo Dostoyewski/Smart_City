@@ -11,5 +11,6 @@ urlpatterns = [
     path('get_data/', views.get_data, name='telemetry_get'),
     path('update/', views.update_db, name='telemetry_update'),
     path('all/', views.data_all, name='telemetry_all'),
-    path('analyse/', views.display_params, name='telemetry_analyse')
+    path('analyse/', views.display_params, name='telemetry_analyse'),
+    path('make_corr/', views.make_correlation, name='telemetry_correlations')
 ]

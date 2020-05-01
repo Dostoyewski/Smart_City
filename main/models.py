@@ -37,6 +37,8 @@ class UserProfile(models.Model):
     age = models.DateField(default=datetime.date(2000, 1, 1))
     # Должность
     position = models.CharField(max_length=50, blank=True)
+    # Информационное текстовое сообщение
+    message = models.CharField(max_length=50, blank=True)
     # Служебная переменная, определяющая уровень доступа
     status = models.IntegerField(choices=STATUS, default=0)
     # стаж
