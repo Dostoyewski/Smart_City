@@ -99,12 +99,22 @@
                           <span>данных</span>
                         </h2>
                         <p>Анализ работы компании, а также статистика по работе всех систем</p>
-                        <a href="#">View more</a>
+                        <a href="{% url 'telemetry_analyse' %}">View more</a>
                       </figcaption>
                     </figure>
                 </div>
             </div>
         </div>
+
+        <div class="home-bottom-buttons row">
+            <div class="col m6 s12 center">
+                <a id="update-telemetry" class="btn-large waves-effect waves-light">Обновить телеметрию</a>
+            </div>
+            <div class="col m6 s12 center">
+                <a id="update-analysis" class="btn-large waves-effect waves-light">Обновить анализ</a>
+            </div>
+        </div>
+
         <div class="hat white-text row" style="margin-bottom: 0em;">
             <div class="container m3 s12 center" style="padding: 1em;">
                 <h6>© 2020 NTI THEORMECH_RELEASE</h6>
@@ -113,5 +123,60 @@
 
         <script src="{% static 'js/materialize.min.js' %}"></script>
         <script src="{% static '/js/registerSw.js' %}"></script>
+
+        <script>
+            let updateTelemetry = document.getElementById('update-telemetry')
+            let updateAnalysis = document.getElementById('update-analysis')
+
+            updateTelemetry.addEventListener('click', e => {
+              updateTelemetry.classList.add('disabled')
+
+                fetch('/telemetry/update/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'reload': 'ok'
+                    })
+                })
+                .then(it => {
+                  updateTelemetry.classList.remove('disabled')
+
+                    if (!it.ok) {
+                        alert('Error: ' + it.statusText)
+                    }
+                })
+                .catch(it => {
+                    updateTelemetry.classList.remove('disabled')
+                })
+            })
+
+            updateAnalysis.addEventListener('click', e => {
+                updateAnalysis.classList.add('disabled')
+
+                fetch('/telemetry/make_corr/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': document.cookie.match(/csrftoken=([^;]+)/)[1],
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'update': 'ok'
+                    })
+                })
+                .then(it => {
+                    updateAnalysis.classList.remove('disabled')
+
+                    if (!it.ok) {
+                        alert('Error: ' + it.statusText)
+                    }
+                })
+                .catch(it => {
+                    updateAnalysis.classList.remove('disabled')
+                })
+            })
+        </script>
     </body>
 </html>
