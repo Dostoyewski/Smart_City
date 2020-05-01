@@ -67,6 +67,6 @@ figcaption {
     max-width: 100% !important;
 }
 
-.home-bottom-buttons {
-    margin-bottom: 3em;
+.home-bottom-buttons a {
+    margin-bottom: 1.5em !important;
 }
