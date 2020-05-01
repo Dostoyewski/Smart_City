@@ -48,35 +48,110 @@
             </div>
         </div>
 
-        <div class="container chartik-popup">
-            <div class="section center">
-                <h3>Критическое состояние</h3>
+        <div class="row">
+            <div class="col l4 row">
+                <div class="col s12 chartik-popup">
+                    test
+                </div>
             </div>
+            <div class="col l8 row">
+                <div class="col s12">
+                    <div class="row server-popups-board">
+                        <div class="col s3">
+                            <div class="server-popup">
 
-            <div class="divider"></div>
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
 
-            <div class="row">
-                <table id="main-table" class="col s12 highlight centered">
-                    <thead>
-                        <tr>
-                            <th>Device</th>
-                            <th>Temp</th>
-                            <th>Vibration</th>
-                            <th>Power</th>
-                            <th>Load</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
 
-                    <tbody>
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
 
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                        <div class="col s3">
+                            <div class="server-popup">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <table id="bottom-table" class="col s12 highlight centered chartik-popup">
+                            <thead>
+                                <tr>
+                                    <th>Степерь полинома</th>
+                                    <th>Коэффициенты</th>
+                                    <th>Корреляция</th>
+                                    <th>Скорость</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>5</td>
+                                    <td lang="latex">a_1, ... a_n</td>
+                                    <td>0.8</td>
+                                    <td>молния маквин</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- <script src="{% static 'js/Chart.bundle.min.js' %}"></script> -->
         <script src="{% static 'js/materialize.min.js' %}"></script>
+        <script src=" {% static 'js/latexit.js' %}"></script>
+
+        <script>
+            // LatexIT.add('p',true)
+        </script>
 
         <script>
             function render(html) {
@@ -86,12 +161,11 @@
             }
 
             const stats = render('{{ approx }}')
-            console.log(stats)
             const data = JSON.parse(stats)
             console.log(data)
 
-            const mainTable = document.getElementById('main-table')
-            const tbody = mainTable.querySelector('tbody')
+            // const mainTable = document.getElementById('main-table')
+            // const tbody = mainTable.querySelector('tbody')
 
             // for (let each of data) {
             //     if (each.data.length > 0) {
