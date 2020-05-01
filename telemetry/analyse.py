@@ -21,7 +21,7 @@ def get_datetime(data):
 def load_file(filenames=['February.dat'], STATIC_ROOT=''):
     df = []
     for filename in filenames:
-        df.append(pd.read_table("." + STATIC_ROOT + "datafiles/" + filename, sep='\t',
+        df.append(pd.read_table("." + STATIC_ROOT + "/datafiles/" + filename, sep='\t',
                                 usecols=['Machine ID', 'Date',
                                          'Temperature', 'Vibration',
                                          'Power', 'System load',
