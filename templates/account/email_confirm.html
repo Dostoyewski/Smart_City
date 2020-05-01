@@ -6,36 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
+    <title>Подтверждение e-mail</title>
 
     <link rel="stylesheet" href="{% static 'css/common.css' %}" />
     <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+
     {% load i18n %}
     {% load account %}
 
 
 </head>
 <body>
-    <div class="screen-height-filler valign-wrapper">
-        <div class="container row center">
-            <div class="col m8 offset-m2 s12 white popup">
-                <h2>{% trans "Confirm E-mail Address" %}</h2>
-                <div class="divider"></div>
+    <div class="screen-height-filler valign-wrapper container demo-1 full-screen">
+        <div id="large-header" class="large-header outer">
+            <canvas id="demo-canvas"></canvas>
+            <div class="container row center inner" style="top: 50%;">
+                <div class="col m8 offset-m2 s12 white popup">
+                    <h2>{% trans "Confirm E-mail Address" %}</h2>
+                    <div class="divider"></div>
 
-                {% user_display confirmation.email_address.user as user_display %}
-                <div class="section center">
-                    <p class="text_for_user">Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.</p>
-                    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-                        {% csrf_token %}
-                        <button
-                        class="btn-large waves-effect waves-light"
-                        type="submit">{% trans 'Confirm' %}</button>
-                    </form>
+                    {% user_display confirmation.email_address.user as user_display %}
+                    <div class="section center">
+                        <p class="text_for_user">Пожалуйста, подтвердите, что данный e-mail <a href="mailto:{{ email }}">{{ email }}</a> принадлежит пользователю {{ user_display }}.</p>
+                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                            {% csrf_token %}
+                            <button
+                            class="btn-large waves-effect waves-light"
+                            type="submit">{% trans 'Confirm' %}</button>
+                        </form>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
+
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/TweenLite.min.js' %}"></script>
+    <script src="{% static 'js/EasePack.min.js' %}"></script>
+    <script src="{% static 'js/rAF.js' %}"></script>
+    <script src="{% static 'js/demo-1.js' %}"></script>
+
 </body>
 </html>
 

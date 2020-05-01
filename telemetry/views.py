@@ -306,9 +306,16 @@ def make_correlation(request):
                 all_data[param] += p.deriv()(ddate)
                 all_data[param+'p'] += corr
                 print("deg:", len(p.coef))
+                if param == 'temp':
+                    critical = Device.objects.get(idDevice=n+1).critical_temp
+                if param == 'load':
+                    critical = Device.objects.get(idDevice=n+1).critical_load
+                if param == 'vibration':
+                    critical = Device.objects.get(idDevice=n+1).critical_vibr
                 Approx.objects.create(array=str(list(p.coef)), piers=corr,
                                       device=Device.objects.get(idDevice=n+1),
-                                      param=param, cur_value=p.deriv()(ddate))
+                                      param=param, cur_value=p.deriv()(ddate),
+                                      time_out=(critical - p(ddate))/p.deriv()(ddate))
         obj, created = SummaryApprox.objects.get_or_create(bench="Approx")
         obj.vibration = all_data['vibration']/ln
         obj.vibrationp = all_data["vibrationp"]/ln
@@ -344,7 +351,8 @@ def display_params(request):
             data.append({"param": obj.param,
                          "piers": obj.piers,
                          "array": obj.array,
-                         "cur_value": obj.cur_value})
+                         "cur_value": obj.cur_value,
+                         "time_out": obj.time_out})
             mcorr += obj.piers
             mspeed += obj.cur_value
         mcorr /= n

@@ -62,8 +62,8 @@
 									  <span class="users-view-name">{{name}}</span>
 									  <span class="grey-text">@</span>
 									  <span class="users-view-username grey-text">{{user.username}}</span>
-									  <blockquote class="blue" >
-										{{message}}
+									  <blockquote  >
+										По всем вопросам пишите в личные сообщения :)
 									  </blockquote>
 									</h6>
 								</div>
@@ -73,7 +73,7 @@
 					  <div class="col s12 m5 quick-action-btns display-flex justify-content-end align-items-center pt-2">
 						<a href="app-email.html" class="btn-large btn-light-indigo right-align waves-light waves-effect"><i class="material-icons">mail_outline</i></a>
 						{% if not isFull %}
-						<a href="/accounts/changeform" class="btn-small indigo">Обновить данные</a>
+						<a href="/accounts/changeform" class="btn-large indigo">Обновить данные</a>
 						{% endif %}
 					  </div>
 					</div>
@@ -120,12 +120,8 @@
 								</tr>
 								<tr>
 									<td>Возраст</td>
-									<td class="users-view-name">{{age}}</td>
-								</tr>
-								<tr>
-									<td>Стек технологий</td>
-									<td class="users-view-name">Html/Css & React</td>
-								</tr>
+									<td class="users-view-age">{{age}}</td>
+								</tr>								
 
 
 							</tbody>
