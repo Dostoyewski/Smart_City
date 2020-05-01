@@ -8,6 +8,7 @@
 .hard-card1{
     min-width: 5% !important;
     max-width: 100% !important;
+    
 }
 
 img{
@@ -31,8 +32,4 @@ img{
 figure{
     height: 100%;
     width: 100%;
-}
-
-.telem{
-    top: 31.4% !important;
 }

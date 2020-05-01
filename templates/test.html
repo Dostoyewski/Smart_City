@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
   <link rel="stylesheet" href="{% static 'css/common.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/style_map.css' %}" />
   <link rel="stylesheet" href="{% static 'css/materialize.css' %}" />
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,51 +31,142 @@
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
   <!-- END VENDORS CSS -->
 </head>
+<style>
+table{
+  display: none;
+}
 
+.djeym-button {
+  font-family: Roboto, sans-serif !important;
+  background-color: #031A66;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.djeym-button-bar {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.djeym-pos-relative {
+  font-family: sans-serif;
+  font-size: 1.5em;
+}
+
+ul {
+  margin: 0;
+  counter-reset: li;
+  list-style: none;
+  background:#E8E8E8;
+  padding: 10px;
+}
+ul li {
+  position: relative;
+  margin: 0 0 10px 2em;
+  padding: 4px 8px;
+  border-top: 2px solid #787A77;
+  transition: .3s linear;
+}
+ul li:last-child {margin-bottom: 0;}
+ul li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  top: -2px;
+  left: -2em;
+  width: 2em;
+  box-sizing: border-box;
+  margin-right: 8px;
+  padding: 4px;
+  border-top: 2px solid #787A77;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  background: #787A77;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: .3s linear;
+}
+ul li:hover {border-top: 2px solid rgb(56, 97, 159);}
+ul li:hover:before {
+  border: 2px solid  rgb(56, 97, 159);
+  background: rgb(166, 195, 238);
+}
+
+@import 'https://fonts.googleapis.com/css?family=Merriweather';
+
+.djeym_ballon_header  span {
+  font-family: 'Merriweather', serif !important;
+  font-size: 20px;
+  letter-spacing: 1px;
+  max-width: 320px;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  color: #465457;
+  text-align: center;
+}
+
+
+.ymaps-2-1-76-b-cluster-tabs__section_type_content{
+  display: none !important;  
+}
+
+</style>
 <body>
   <!-- START MAP -->
   <!-- Buttons are optional.
        (Кнопки не являются обязательными.) -->
-    <div class="hat white-text row">
+  <div class="hat white-text row">
     <div class="col m3 s12 center">
-      <a href="/">
-        <img src="{% static 'images/logo.png' %}" alt="" class="logo">
-      </a>
+        <a href="/">
+            <img src="{% static 'images/logo.png' %}" alt="" class="logo">
+        </a>
     </div>
 
     <div class="col m4 offset-m1 s12 valign-wrapper">
-      <nav class="grey lighten-3 hat-search">
-        <div class="nav-wrapper">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" tabindex="1">
-              <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+        <nav class="grey lighten-3 hat-search">
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" tabindex="1">
+                        <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                    </div>
+                </form>
             </div>
-          </form>
-        </div>
-      </nav>
+        </nav>
     </div>
 
     <div class="col m4 s12 flex-right-toolbar hide-on-small-only">
-      <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
-      <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+        <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+        <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
     </div>
 
     <div class="col m4 s12 accurate-flex-toolbar hide-on-med-and-up">
-      <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
-      <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
+        <a class="btn white black-text waves-effect waves-dark" href="{% url 'account_logout' %}">Выйти</a>
+        <a class="btn white black-text waves-effect waves-dark" href="{% url 'tab_account' %}">Аккаунт</a>
     </div>
   </div>
 
+  
   <div class="djeym-button-bar">
-    <button id="djeym-open-panel" type="button" class="djeym-button">
+    <button id="djeym-open-panel" type="button" class="djeym-button" style="background-color: #031A66;">
       <span class="mdi mdi-arrow-expand-right"></span>
-      Open Panel
+      Открыть панель
     </button>
-    
   </div>
-  <div id="djeym-app" class="djeym"></div>
 
+  <div class="band white z-depth-4" >  
+    <div id="djeym-app" class="djeym"></div>
+  </div>
   <!-- END MAP -->
 
   <br>
@@ -91,5 +181,8 @@
   <script src="{% static 'djeym/js/jquery-regex.min.js' %}"></script>
   {% djeym_yandex_map slug='test' lang=request.LANGUAGE_CODE %}
   <!-- END VENDORS JS -->
+
+  <script src="{% static 'js/materialize.min.js' %}"></script>
+  <script src="{% static '/js/registerSw.js' %}"></script>
 </body>
 </html>
