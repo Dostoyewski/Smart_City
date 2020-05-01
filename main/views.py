@@ -83,9 +83,9 @@ def profile(request):
         obj = UserProfile.objects.get(user_id=request.user.pk)
         age = dt.date.today().year - obj.age.year
         return render(request, 'main/account.html', {'email': obj.user.email, 'name': obj.name,
-                                                      'vorname': obj.vorname, 'fname': obj.fathername,
-                                                      'gender': obj.gender, 'age': age,
-                                                      'position': obj.position, 'exp': obj.exp,
+                                                     'vorname': obj.vorname, 'fname': obj.fathername,
+                                                     'gender': obj.gender, 'age': age,
+                                                     'position': obj.position, 'exp': obj.exp,
                                                      'isFull': obj.isFull, 'avatar': obj.avatar,
                                                      'bdate': obj.age, 'message': obj.message})
     except:
