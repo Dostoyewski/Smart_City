@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from .models import Device, StatData, Approx
+from .models import Device, StatData, Approx, SummaryApprox
 import json
 import pandas as pd
 import numpy as np
@@ -291,15 +291,33 @@ def make_correlation(request):
         data = load_file(files, settings.STATIC_ROOT)
         params = ["vibration", "load", "temp"]
         ln = len(data)
-        summ = []
+        all_data = {"vibration": 0,
+                    "vibrationp": 0,
+                    "load": 0,
+                    "loadp": 0,
+                    "temp": 0,
+                    "tempp": 0}
         for n in range(ln):
+            first_date = StatData.objects.first().date
+            last_date = StatData.objects.last().date
+            ddate = (last_date - first_date).total_seconds()
             for param in params:
                 p, corr = get_fit(data, n, param)
+                all_data[param] += p.deriv()(ddate)
+                all_data[param+'p'] += corr
                 print("deg:", len(p.coef))
                 Approx.objects.create(array=str(list(p.coef)), piers=corr,
                                       device=Device.objects.get(idDevice=n+1),
-                                      param=param)
-
+                                      param=param, cur_value=p.deriv()(ddate))
+        obj, created = SummaryApprox.objects.get_or_create(bench="Approx")
+        obj.vibration = all_data['vibration']/ln
+        obj.vibrationp = all_data["vibrationp"]/ln
+        obj.load = all_data["load"]/ln
+        obj.loadp = all_data['loadp']/ln
+        obj.temp = all_data['temp']/ln
+        obj.tempp = all_data['tempp']/ln
+        obj.save()
+        # print(obj)
         return JsonResponse(status=200, data={"status": "updated"})
     else:
         return JsonResponse(status=405, data={"message": "METHOD_NOT_ALLOWED"})
@@ -311,11 +329,43 @@ def display_params(request):
     :param request:
     :return:
     """
-    data = []
-    func = Approx.objects.all()
-    for obj in func:
-        data.append({"device": obj.device.idDevice,
-                     "param": obj.param,
-                     "piers": obj.piers,
-                     "array": obj.array})
-    return render(request, 'telemetry/analyse.html', {'approx': json.dumps(data)})
+    devices = Device.objects.all()
+    all_data = []
+    all_speed = 0
+    all_corr = 0
+    n_devices = len(devices)
+    for device in devices:
+        data = []
+        func = Approx.objects.filter(device=device)
+        n = len(func)
+        mspeed = 0
+        mcorr = 0
+        for obj in func:
+            data.append({"param": obj.param,
+                         "piers": obj.piers,
+                         "array": obj.array,
+                         "cur_value": obj.cur_value})
+            mcorr += obj.piers
+            mspeed += obj.cur_value
+        mcorr /= n
+        mspeed /= n
+        all_speed += mspeed
+        all_corr += mcorr
+        all_data.append({"device": device.idDevice,
+                         "data": data,
+                         "mcorr": mcorr,
+                         "mspeed": mspeed})
+    mcorr /= n_devices
+    mspeed /= n_devices
+    obj = SummaryApprox.objects.get(bench="Approx")
+    json_resp_date = {"devices": all_data,
+                      "main_corr": mcorr,
+                      "mspeed": mspeed,
+                      "mcorr": mcorr,
+                      "vspeed": obj.vibration,
+                      "vcorr": obj.vibrationp,
+                      "lspeed": obj.load,
+                      "lcorr": obj.loadp,
+                      "tspeed": obj.temp,
+                      "tcorr": obj.tempp}
+    return render(request, 'telemetry/analyse.html', {"data": json.dumps(json_resp_date)})

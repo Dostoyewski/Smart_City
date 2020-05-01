@@ -40,4 +40,15 @@ class Approx(models.Model):
     piers = models.FloatField(default=1)
     device = models.ForeignKey(Device, on_delete=models.CASCADE, blank=True)
     param = models.CharField(max_length=20)
+    cur_value = models.FloatField(default=0)
+
+
+class SummaryApprox(models.Model):
+    bench = models.CharField(default='bench', max_length=20)
+    vibration = models.FloatField(default=0)
+    vibrationp = models.FloatField(default=0)
+    load = models.FloatField(default=0)
+    loadp = models.FloatField(default=0)
+    temp = models.FloatField(default=0)
+    tempp = models.FloatField(default=0)
 
