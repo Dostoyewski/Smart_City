@@ -12,7 +12,7 @@ cycler==0.10.0
 daphne==2.5.0
 DateTime==4.3
 defusedxml==0.6.0
-Django==3.0.3
+Django==3.0.7
 django-admin-sortable==2.2.3
 django-allauth==0.41.0
 django-appconf==1.0.4
